@@ -73,7 +73,6 @@ function dog(x, y) {
 
   pop();
 }
-
 function sheep(x, y) {
   noStroke();
 
@@ -174,10 +173,21 @@ function barn(x, y) {
   pop();
 }
 
-function brick(x, y) {
+function brick(position) {
   fill(200, 200, 20);
-  rect(x, y, 100, 20);
+  rect(position.x, position.y, 100, 20);
 }
+
+//blicks lvl 1
+let brick1 = {
+  x: 300,
+  y: 400,
+};
+let brick2 = {
+  x: 500,
+  y: 350,
+};
+
 function cloud(x, y) {
   fill(255);
 
@@ -289,7 +299,6 @@ function gameScreen() {
   }
 
   const brickX = 520;
-  const hej = 400;
   const brickY = 443;
   const brickWidth = 200;
   const brickHeight = 20;
@@ -304,9 +313,9 @@ function gameScreen() {
     y = brickY - 50; // Position character on top of the brick
   }
 
+  brick(brick1);
+  brick(brick2);
   barn(2000, 1000);
-  brick(300, 400);
-  brick(500, 350);
   sheep(1300, 1500);
   sheep(1670, 960);
   sheep(2300, 1500);
@@ -350,7 +359,7 @@ function draw() {
   }
 }
 
-let state = "start";
+let state = "game";
 
 function mouseClicked() {
   if (state === "instruction") {

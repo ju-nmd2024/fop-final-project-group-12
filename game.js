@@ -3,9 +3,9 @@ let cloudX = 200;
 let speed = 10;
 let y = 500;
 let x = 100;
-let s = 0.3;
-let c = 0.3;
-let b = 0.5;
+let s = 0.3; //scale dog
+let c = 0.3; //scale sheep
+let b = 1; //scale barn
 const jump = 20;
 const gravity = 1;
 const groundY = 500;
@@ -14,6 +14,7 @@ let velocityY = 2;
 let brickX = 100;
 let brickY = 100;
 let dogY = 500;
+let dogX = x;
 
 function setup() {
   createCanvas(900, 600);
@@ -73,6 +74,7 @@ function dog(x, y) {
 
   pop();
 }
+
 function sheep(x, y) {
   noStroke();
 
@@ -174,11 +176,16 @@ function barn(x, y) {
 }
 
 function brick(position) {
-  fill(200, 200, 20);
+  fill(100, 20, 20);
   rect(position.x, position.y, 100, 20);
 }
 
-//blicks lvl 1
+//start bricks
+let brick0 = {
+  x: 500,
+  y: 400,
+};
+//bricks lvl 1
 let brick1 = {
   x: 300,
   y: 400,
@@ -187,6 +194,18 @@ let brick2 = {
   x: 500,
   y: 350,
 };
+
+//bricks lvl 2
+let brick3 = {
+  x: 300,
+  y: 400,
+};
+
+//bricks lvl 1
+let bricks = [
+  { x: 510, y: 443, width: 240, height: 20 }, //lvl 1
+  { x: 780, y: 405, width: 240, height: 20 }, //lvl 1
+];
 
 function cloud(x, y) {
   fill(255);
@@ -246,9 +265,16 @@ function buttonLose() {
   text("LEVELS", 302, 352);
 }
 
+function resetlvl() {
+  dogY = 500;
+  dogX = 0;
+  gamesState = true;
+}
+
 function startScreen() {
   gameBackground();
   buttons();
+  brick(brick0);
 }
 
 function instructionScreen() {
@@ -258,25 +284,36 @@ function instructionScreen() {
   text("Instructions:", 250, 200);
   textSize(20);
   text("Press space to jump and.. ", 250, 300);
+  text("click anywhere to go back", 300, 400);
 }
 
 function levelScreen() {
-  background(255);
+  gameBackground();
+  rect(250, 180, 250, 50, 10);
+  rect(250, 320, 250, 50, 10);
+  rect(250, 250, 250, 50, 10);
+
+  fill(0, 0, 0);
+  textSize(20);
+  text("1", 370, 200, 50, 50);
+  text("2", 370, 270, 50, 50);
+  text("3", 370, 340, 50, 50);
 }
 
 function gameScreen() {
-  background(190, 190, 255);
+  //background(190, 190, 255);
   gameBackground();
-  dog(x, y - 150);
+  barn(100, 250);
+  dog(dogX, y - 150);
   //code for gravity from Chat GPT
-  if (x < 1500) {
+  if (dogX < 1500) {
     // as long as character is not there yet
 
     if (keyIsDown(39)) {
-      x = x + speed;
+      dogX = dogX + speed;
     }
     if (keyIsDown(37)) {
-      x = x - speed;
+      dogX = dogX - speed;
     }
 
     y += velocityY;
@@ -298,35 +335,33 @@ function gameScreen() {
     velocityY = 0;
   }
 
-  const brickX = 520;
-  const brickY = 443;
-  const brickWidth = 200;
-  const brickHeight = 20;
-
-  if (
-    x + 50 > brickX &&
-    x < brickX + brickWidth &&
-    y + 50 > brickY &&
-    y + 50 <= brickY + 20
-  ) {
-    velocityY = 0; // Stop falling
-    y = brickY - 50; // Position character on top of the brick
+  for (let brick of bricks) {
+    if (
+      dogX + 50 > brick.x &&
+      dogX < brick.x + brick.width &&
+      y + 50 > brick.y &&
+      y + 50 <= brick.y + brick.height
+    ) {
+      velocityY = 0;
+      y = brick.y - 50;
+    }
   }
 
   brick(brick1);
   brick(brick2);
   barn(2000, 1000);
-  sheep(1300, 1500);
+  sheep(1000, 1500);
   sheep(1670, 960);
-  sheep(2300, 1500);
+  sheep(2000, 1500);
 }
 
 function gameScreen2() {
-  background(255, 0, 0);
+  gameBackground();
+  brick(brick3);
 }
 
 function gameScreen3() {
-  background(0, 255, 0);
+  background(255, 255, 0);
 }
 
 // Handle jumping from P5 website
@@ -339,10 +374,12 @@ function keyPressed() {
 
 function resultScreen() {
   gameBackground();
-  //om hunden har alla får:
+  //if(allSheepCollected) {
+  //om hunden inte har alla får:
   buttonLose();
-  //else
+  // } else {
   buttonWin();
+  // }
 }
 
 function draw() {
@@ -356,31 +393,42 @@ function draw() {
     resultScreen();
   } else if (state === "levels") {
     levelScreen();
+  } else if (state === "game2") {
+    gameScreen2();
+  } else if (state === "game3") {
+    gameScreen3();
   }
 }
 
-let state = "game";
+let state = "start";
 
 function mouseClicked() {
   if (state === "instruction") {
     state = "start";
-  } else if (state === "result") {
-    state = "start";
+  } else if (
+    state === "result" &&
+    mouseX >= 250 &&
+    mouseX <= 500 &&
+    mouseY >= 320 &&
+    mouseY <= 370
+  ) {
+    state = "levels";
   } else if (state === "game")
     //bara för redigeringen
     state = "start";
-
-  if (
+  //startscreen
+  else if (
+    //start button
     state === "start" &&
     mouseX >= 250 &&
     mouseX <= 500 &&
     mouseY >= 200 &&
     mouseY <= 250
   ) {
-    state = "game";
+    state = "levels";
   }
-
-  if (
+  // instructions button
+  else if (
     state === "start" &&
     mouseX >= 250 &&
     mouseX <= 500 &&
@@ -390,17 +438,48 @@ function mouseClicked() {
     state = "instruction";
   }
 
-  if (
+  //levels screen
+  //lvl 1
+  else if (
+    state === "levels" &&
+    mouseX >= 250 &&
+    mouseX <= 500 &&
+    mouseY >= 180 &&
+    mouseY <= 230
+  ) {
+    state = "game";
+  }
+  //lvl 2
+  else if (
+    state === "levels" &&
+    mouseX >= 250 &&
+    mouseX <= 500 &&
+    mouseY >= 250 &&
+    mouseY <= 300
+  ) {
+    state = "game2";
+  }
+  // lvl3
+  else if (
+    state === "levels" &&
+    mouseX >= 250 &&
+    mouseX <= 500 &&
+    mouseY >= 320 &&
+    mouseY <= 370
+  ) {
+    state = "game3";
+  }
+
+  //next lvl button
+  else if (
     state === "result" && //måste dock va olika för win / lose
     mouseX >= 250 &&
     mouseX <= 500 &&
     mouseY >= 200 &&
     mouseY <= 250
   ) {
-    state = "game";
-  }
-
-  if (
+    state = "game2";
+  } else if (
     state === "result" &&
     mouseX >= 250 &&
     mouseX <= 500 &&
@@ -408,5 +487,8 @@ function mouseClicked() {
     mouseY <= 370
   ) {
     state = "levels";
+  } else if (state === "result") {
+    resetlvl();
+    state = "start";
   }
 }

@@ -11,8 +11,6 @@ const gravity = 1;
 const groundY = 500;
 let jumpheight = 2;
 let velocityY = 2;
-let brickX = 100;
-let brickY = 100;
 let dogY = 500;
 let dogX = x;
 

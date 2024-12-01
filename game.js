@@ -376,6 +376,13 @@ function keyPressed() {
   }
 
   for (let brick of bricks) {
+    if (dogY === brick.y) {
+      onSurface = true;
+    }
+  }
+
+  /*
+  for (let brick of bricks) {
     // if dog on brick
     if (
       dogX + 50 > brick.x &&
@@ -386,8 +393,9 @@ function keyPressed() {
       onSurface = true;
     }
   }
+      */
 
-  if (keyCode === 32 && onSurface) {
+  if (keyCode === 32 && dogY === onSurface) {
     // Space bar, on the ground and brick
     velocityY = -jump; // jump
   }

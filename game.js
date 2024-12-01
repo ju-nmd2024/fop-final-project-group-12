@@ -197,7 +197,7 @@ let brick2 = {
 
 //bricks lvl 2
 let brick3 = {
-  x: 300,
+  x: 400,
   y: 400,
 };
 
@@ -275,6 +275,7 @@ function startScreen() {
   gameBackground();
   buttons();
   brick(brick0);
+  sheep(1700, 1110);
 }
 
 function instructionScreen() {

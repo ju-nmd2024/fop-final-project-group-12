@@ -291,12 +291,14 @@ function levelScreen() {
   rect(300, 180, 250, 50, 10);
   rect(300, 320, 250, 50, 10);
   rect(300, 250, 250, 50, 10);
+  rect(300, 390, 250, 50, 10);
 
   fill(0, 0, 0);
   textSize(20);
   text("1", 420, 200, 50, 50);
   text("2", 420, 270, 50, 50);
   text("3", 420, 340, 50, 50);
+  text("back to start", 370, 405, 200, 50);
 }
 
 function gameScreen() {
@@ -365,9 +367,29 @@ function gameScreen3() {
 
 // Handle jumping from P5 website
 function keyPressed() {
-  if (keyCode === 32 && y === groundY) {
-    // Space bar and on the ground
-    velocityY = -jump; // Apply upward velocity
+  //let GroundOrBrick = y === groundY;
+  let onSurface = false;
+
+  if (dogY === groundY) {
+    //if dog on ground
+    onSurface = true;
+  }
+
+  for (let brick of bricks) {
+    // if dog on brick
+    if (
+      dogX + 50 > brick.x &&
+      dogX < brick.x + brick.width &&
+      y + 50 >= brick.y &&
+      y + 50 <= brick.y + brick.height
+    ) {
+      onSurface = true;
+    }
+  }
+
+  if (keyCode === 32 && onSurface) {
+    // Space bar, on the ground and brick
+    velocityY = -jump; // jump
   }
 }
 
@@ -467,6 +489,16 @@ function mouseClicked() {
     mouseY <= 370
   ) {
     state = "game3";
+  }
+  // back to start
+  else if (
+    state === "levels" &&
+    mouseX >= 300 &&
+    mouseX <= 500 &&
+    mouseY >= 390 &&
+    mouseY <= 440
+  ) {
+    state = "start";
   }
 
   //next lvl button

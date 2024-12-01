@@ -182,7 +182,7 @@ function brick(position) {
 
 //start bricks
 let brick0 = {
-  x: 500,
+  x: 600,
   y: 400,
 };
 //bricks lvl 1
@@ -201,7 +201,6 @@ let brick3 = {
   y: 400,
 };
 
-//bricks lvl 1
 let bricks = [
   { x: 510, y: 443, width: 240, height: 20 }, //lvl 1
   { x: 780, y: 405, width: 240, height: 20 }, //lvl 1
@@ -234,30 +233,30 @@ function gameBackground() {
 }
 
 function buttons() {
-  rect(250, 200, 250, 50, 10);
-  rect(250, 320, 250, 50, 10);
+  rect(300, 200, 250, 50, 10);
+  rect(300, 320, 250, 50, 10);
   fill(0, 0, 0);
   textSize(20);
-  text("START", 340, 232);
+  text("START", 390, 232);
   textSize(20);
-  text("INSTRUCTIONS", 302, 352);
+  text("INSTRUCTIONS", 345, 352);
 }
 
 function buttonWin() {
   fill(255);
-  rect(250, 200, 250, 50, 10);
-  rect(250, 320, 250, 50, 10);
+  rect(300, 200, 250, 50, 10);
+  rect(300, 320, 250, 50, 10);
   fill(0, 0, 0);
   textSize(20);
-  text("NEXT LEVEL", 340, 232);
+  text("NEXT LEVEL", 365, 232);
   textSize(20);
-  text("LEVELS", 302, 352);
+  text("LEVELS", 380, 352);
 }
 
 function buttonLose() {
   fill(255);
-  rect(250, 200, 250, 50, 10);
-  rect(250, 320, 250, 50, 10);
+  rect(300, 200, 250, 50, 10);
+  rect(300, 320, 250, 50, 10);
   fill(0, 0, 0);
   textSize(20);
   text("TRY AGAIN", 340, 232);
@@ -275,7 +274,8 @@ function startScreen() {
   gameBackground();
   buttons();
   brick(brick0);
-  sheep(1700, 1110);
+  sheep(2000, 1110);
+  dog(300, 350);
 }
 
 function instructionScreen() {
@@ -290,15 +290,15 @@ function instructionScreen() {
 
 function levelScreen() {
   gameBackground();
-  rect(250, 180, 250, 50, 10);
-  rect(250, 320, 250, 50, 10);
-  rect(250, 250, 250, 50, 10);
+  rect(300, 180, 250, 50, 10);
+  rect(300, 320, 250, 50, 10);
+  rect(300, 250, 250, 50, 10);
 
   fill(0, 0, 0);
   textSize(20);
-  text("1", 370, 200, 50, 50);
-  text("2", 370, 270, 50, 50);
-  text("3", 370, 340, 50, 50);
+  text("1", 420, 200, 50, 50);
+  text("2", 420, 270, 50, 50);
+  text("3", 420, 340, 50, 50);
 }
 
 function gameScreen() {
@@ -443,8 +443,8 @@ function mouseClicked() {
   //lvl 1
   else if (
     state === "levels" &&
-    mouseX >= 250 &&
-    mouseX <= 500 &&
+    mouseX >= 300 &&
+    mouseX <= 550 &&
     mouseY >= 180 &&
     mouseY <= 230
   ) {
@@ -453,8 +453,8 @@ function mouseClicked() {
   //lvl 2
   else if (
     state === "levels" &&
-    mouseX >= 250 &&
-    mouseX <= 500 &&
+    mouseX >= 300 &&
+    mouseX <= 550 &&
     mouseY >= 250 &&
     mouseY <= 300
   ) {
@@ -463,8 +463,8 @@ function mouseClicked() {
   // lvl3
   else if (
     state === "levels" &&
-    mouseX >= 250 &&
-    mouseX <= 500 &&
+    mouseX >= 300 &&
+    mouseX <= 550 &&
     mouseY >= 320 &&
     mouseY <= 370
   ) {
@@ -474,20 +474,24 @@ function mouseClicked() {
   //next lvl button
   else if (
     state === "result" && //måste dock va olika för win / lose
-    mouseX >= 250 &&
-    mouseX <= 500 &&
+    mouseX >= 300 &&
+    mouseX <= 550 &&
     mouseY >= 200 &&
     mouseY <= 250
   ) {
     state = "game2";
   } else if (
     state === "result" &&
-    mouseX >= 250 &&
-    mouseX <= 500 &&
+    mouseX >= 300 &&
+    mouseX <= 550 &&
     mouseY >= 320 &&
     mouseY <= 370
   ) {
     state = "levels";
+  } else if (state === "game2") {
+    state = "start";
+  } else if (state === "game3") {
+    state = "start";
   } else if (state === "result") {
     resetlvl();
     state = "start";

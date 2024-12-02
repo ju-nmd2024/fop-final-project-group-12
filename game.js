@@ -271,9 +271,13 @@ function resetlvl() {
 function startScreen() {
   gameBackground();
   buttons();
+  fill(0);
+  textSize(50);
+  text("HERD HERO", 270, 100, 400, 100);
   brick(brick0);
   sheep(2000, 1110);
   dog(300, 350);
+  barn(90, 250);
 }
 
 function instructionScreen() {
@@ -282,7 +286,15 @@ function instructionScreen() {
   textSize(40);
   text("Instructions:", 250, 200);
   textSize(20);
-  text("Press space to jump and.. ", 250, 300);
+  text(" Collect all sheeps and return to the barn", 200, 250);
+
+  text(
+    "Use the arrow keys to move the character, use the spacebar to jump",
+    200,
+    300
+  );
+  text(" Watch out for the wolves! They will take all your sheeps!", 200, 350);
+
   text("click anywhere to go back", 300, 400);
 }
 
@@ -395,7 +407,7 @@ function keyPressed() {
   }
       */
 
-  if (keyCode === 32 && dogY === onSurface) {
+  if (keyCode === 32 && onSurface) {
     // Space bar, on the ground and brick
     velocityY = -jump; // jump
   }

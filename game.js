@@ -132,6 +132,23 @@ function sheep(x, y) {
   rect(x * c + 60 * c, y * c + 100 * c, 20 * c, 20 * c);
 }
 
+class Wolf {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+
+  move() {
+    this.x -= 2; //moves to the left
+  }
+
+  draw() {
+    fill(0);
+    ellipse(450, y, 50, 50);
+  }
+}
+
+let wolves = [new Wolf(100, 500)];
 function barn(x, y) {
   //barn
   fill(200, 0, 10);
@@ -195,8 +212,8 @@ let brick2 = {
 
 //bricks lvl 2
 let brick3 = {
-  x: 400,
-  y: 400,
+  x: 200,
+  y: 350,
 };
 
 let bricks = [
@@ -370,6 +387,43 @@ function gameScreen() {
 
 function gameScreen2() {
   gameBackground();
+  barn(100, 250);
+  fill(190, 190, 255);
+  rect(460, 500, 150, 100);
+
+  if (keyIsDown(39)) {
+    dogX = dogX + speed;
+  }
+  if (keyIsDown(37)) {
+    dogX = dogX - speed;
+  }
+
+  for (let brick of bricks) {
+    if (
+      dogX + 50 > brick.x &&
+      dogX < brick.x + brick.width &&
+      y + 50 > brick.y &&
+      y + 50 <= brick.y + brick.height
+    ) {
+      velocityY = 0;
+      y = brick.y - 50;
+    }
+  }
+  for (let Wolf of wolves) {
+    Wolf.draw();
+  }
+
+  function checkCollisions() {
+    this.wolves.forEach((Wolf) => {
+      let distance = dist(dogX === wolf.x && dogY === wolf.y);
+      {
+        if (distance < 10) {
+          console.log("lol");
+        }
+      }
+    });
+  }
+
   brick(brick3);
 }
 
@@ -441,7 +495,7 @@ function draw() {
   }
 }
 
-let state = "start";
+let state = "game2";
 
 function mouseClicked() {
   if (state === "instruction") {

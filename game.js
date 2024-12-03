@@ -148,7 +148,7 @@ class Wolf {
   }
 }
 
-let wolves = [new Wolf(100, 500)];
+let wolves = [new Wolf(100, 500), new Wolf(500, 450)];
 function barn(x, y) {
   //barn
   fill(200, 0, 10);
@@ -219,6 +219,7 @@ let brick3 = {
 let bricks = [
   { x: 510, y: 443, width: 240, height: 20 }, //lvl 1
   { x: 780, y: 405, width: 240, height: 20 }, //lvl 1
+  { x: 360, y: 405, width: 240, height: 20 }, //lvl 2
 ];
 
 function cloud(x, y) {
@@ -233,6 +234,16 @@ function cloud(x, y) {
   ellipse(cloudX + 455, cloudY - 50, 100, 60);
   ellipse(cloudX + 510, cloudY - 30, 100, 50);
   ellipse(cloudX + 455, cloudY - 20, 100, 30);
+}
+
+function arrow(x, y) {
+  push();
+  stroke(0, 0, 0);
+  strokeWeight(5);
+  line(x, y, 375, 360);
+  line(x, y, 365, 350);
+  line(x, y, 385, 350);
+  pop();
 }
 
 function gameBackground() {
@@ -299,20 +310,48 @@ function startScreen() {
 
 function instructionScreen() {
   gameBackground();
-  fill(255);
-  textSize(40);
-  text("Instructions:", 250, 200);
+  fill(0);
+  textSize(60);
+  text("Instructions", 250, 120);
   textSize(20);
-  text(" Collect all sheeps and return to the barn", 200, 250);
+  text("Collect all sheeps and return to the barn", 160, 200);
 
   text(
     "Use the arrow keys to move the character, use the spacebar to jump",
-    200,
+    160,
+    250,
     300
   );
-  text(" Watch out for the wolves! They will take all your sheeps!", 200, 350);
+  text(
+    "Watch out for the wolves! They will take all your sheeps!",
+    160,
+    370,
+    300
+  );
 
-  text("click anywhere to go back", 300, 400);
+  text("click anywhere to go back", 300, 550);
+  //game keys
+  fill(255);
+  rect(450, 300, 50, 50, 10); // right
+  rect(390, 300, 50, 50, 10); //left
+  rect(550, 300, 150, 50, 10); //space
+
+  push();
+  stroke(0, 0, 0);
+  strokeWeight(5);
+  //left
+  line(400, 327, 415, 315);
+  line(400, 327, 415, 340);
+  line(430, 327, 400, 327);
+  //right
+  line(460, 327, 490, 327);
+  line(490, 327, 475, 340);
+  line(490, 327, 475, 315);
+  pop();
+
+  for (let Wolf of wolves) {
+    Wolf.draw();
+  }
 }
 
 function levelScreen() {
@@ -390,24 +429,35 @@ function gameScreen2() {
   barn(100, 250);
   fill(190, 190, 255);
   rect(460, 500, 150, 100);
+  dog(dogX, y - 150);
+  //code for gravity from Chat GPT
+  if (dogX < 1500) {
+    // as long as character is not there yet
 
-  if (keyIsDown(39)) {
-    dogX = dogX + speed;
-  }
-  if (keyIsDown(37)) {
-    dogX = dogX - speed;
-  }
-
-  for (let brick of bricks) {
-    if (
-      dogX + 50 > brick.x &&
-      dogX < brick.x + brick.width &&
-      y + 50 > brick.y &&
-      y + 50 <= brick.y + brick.height
-    ) {
-      velocityY = 0;
-      y = brick.y - 50;
+    if (keyIsDown(39)) {
+      dogX = dogX + speed;
     }
+    if (keyIsDown(37)) {
+      dogX = dogX - speed;
+    }
+
+    y += velocityY;
+
+    if (y < groundY) {
+      // If the character is in the air
+      velocityY += gravity; // Apply gravity
+    } else {
+      // If the character is on the ground
+      velocityY = 0; // Stop vertical velocity
+      y = groundY; // Reset to ground level
+    }
+  } else {
+    //call result screen when done
+    state = "result";
+  }
+
+  if (dogY < 500) {
+    velocityY = 0;
   }
   for (let Wolf of wolves) {
     Wolf.draw();
@@ -424,6 +474,17 @@ function gameScreen2() {
     });
   }
 
+  for (let brick of bricks) {
+    if (
+      dogX + 50 > brick.x &&
+      dogX < brick.x + brick.width &&
+      y + 50 > brick.y &&
+      y + 50 <= brick.y + brick.height
+    ) {
+      velocityY = 0;
+      y = brick.y - 50;
+    }
+  }
   brick(brick3);
 }
 
@@ -495,7 +556,7 @@ function draw() {
   }
 }
 
-let state = "game2";
+let state = "start";
 
 function mouseClicked() {
   if (state === "instruction") {

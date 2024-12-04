@@ -6,6 +6,7 @@ let x = 100;
 let s = 0.3; //scale dog
 let c = 0.3; //scale sheep
 let b = 1; //scale barn
+let w = 0.3;
 const jump = 20;
 const gravity = 1;
 const groundY = 500;
@@ -220,6 +221,55 @@ ellipse(cloudX + 510, cloudY - 30, 100, 50);
 ellipse(cloudX + 455, cloudY - 20, 100, 30);
 }
 
+function wolf(x, y) {
+    noStroke();
+    //body
+    fill(190, 190, 190);
+    rect(x * w + 20 * w, y * w, 160 * w, 60 * w);
+    rect(x * w + 80 * w, y * w - 20 * w, 100 * w, 20 * w);
+    rect(x * w + 120 * w, y * w - 40 * w, 60 * w, 20 * w);
+  
+    rect(x * w + 80 * w, y * w + 60 * w, 100 * w, 20 * w);
+    rect(x * w + 80 * w, y * w + 100 * w, 40 * w, 180 * w);
+    rect(x * w + 80 * w, y * w + 100 * w, 320 * w, 90 * w);
+    rect(x * w + 160 * w, y * w + 100 * w, 40 * w, 180 * w);
+    rect(x * w + 360 * w, y * w + 100 * w, 40 * w, 180 * w);
+    rect(x * w + 280 * w, y * w + 100 * w, 40 * w, 180 * w);
+  
+    // fläck
+    fill(105, 105, 105);
+    rect(x * w + 180 * w, y * w - 20 * w, 20 * w, 100 * w);
+    rect(x * w + 200 * w, y * w + 60 * w, 20 * w, 20 * w);
+    rect(x * w + 200 * w, y * w + 60 * w, 20 * w, 20 * w);
+    rect(x * w + 380 * w, y * w + 40 * w, 40 * w, 60 * w);
+    rect(x * w + 360 * w, y * w + 20 * w, 40 * w, 20 * w);
+    rect(x * w + 340 * w, y * w + 40 * w, 20 * w, 20 * w);
+    rect(x * w + 220 * w, y * w + 100 * w, 180 * w, 20 * w);
+    rect(x * w + 260 * w, y * w + 120 * w, 140 * w, 20 * w);
+    rect(x * w + 300 * w, y * w + 140 * w, 80 * w, 20 * w);
+    //öron
+    rect(x * w + 100 * w, y * w - 80 * w, 20 * w, 20 * w);
+    rect(x * w + 160 * w, y * w - 60 * w, 40 * w, 40 * w);
+    rect(x * w + 180 * w, y * w - 80 * w, 20 * w, 20 * w);
+    rect(x * w + 100 * w, y * w - 60 * w, 40 * w, 40 * w);
+  
+    //darkest spots
+    fill(0, 0, 0);
+    rect(x * w, y * w, 40 * w, 40 * w);
+    rect(x * w + 100 * w, y * w - 60 * w, 20 * w, 40 * w);
+    rect(x * w + 180 * w, y * w - 60 * w, 20 * w, 40 * w);
+    rect(x * w + 100 * w, y * w, 20 * w, 20 * w);
+    rect(x * w + 140 * w, y * w, 20 * w, 20 * w);
+    rect(x * w + 60 * w, y * w + 260 * w, 20 * w, 20 * w);
+    rect(x * w + 140 * w, y * w + 260 * w, 20 * w, 20 * w);
+    rect(x * w + 340 * w, y * w + 260 * w, 20 * w, 20 * w);
+    rect(x * w + 260 * w, y * w + 260 * w, 20 * w, 20 * w);
+    //halsband
+    fill(190, 190, 190);
+    rect(x * w + 80 * w, y * w + 80 * w, 140 * w, 40 * w);
+  }
+  
+  
 function gameBackground() {
 background(190, 190, 255);
 fill(0, 255, 0);
@@ -344,7 +394,6 @@ buttonLevel3.draw();
 }
 
 function gameScreen() {
-//background(190, 190, 255);
 gameBackground();
 barn(100, 250);
 dog(dogX, y - 150);
@@ -388,7 +437,7 @@ y + 50 <= brick.y + brick.height
 velocityY = 0;
 y = brick.y - 50;
 }
-}
+} 
 
 brick(brick1);
 brick(brick2);
@@ -400,11 +449,85 @@ sheep(2000, 1500);
 
 function gameScreen2() {
 gameBackground();
-brick(brick3);
+brick(brick1);
+barn(2000,1000);
+wolf(1500,1400);
+sheep(2000,1500);
+sheep(1000,1110);
+
+dog(dogX, y - 150);
+//code for gravity from Chat GPT
+if (dogX < 1500) {
+// as long as character is not there yet
+
+if (keyIsDown(39)) {
+dogX = dogX + speed;
+}
+if (keyIsDown(37)) {
+dogX = dogX - speed;
+}
+
+y += velocityY;
+
+if (y < groundY) {
+// If the character is in the air
+velocityY += gravity; // Apply gravity
+} else {
+// If the character is on the ground
+velocityY = 0; // Stop vertical velocity
+y = groundY; // Reset to ground level
+}
+} else {
+//call result screen when done
+state = "result";
+}
+
+if (dogY < 500) {
+velocityY = 0;
+}
 }
 
 function gameScreen3() {
-background(255, 255, 0);
+gameBackground();
+brick(brick0);
+brick(brick1);
+barn(2000,1000);
+sheep(1000,1110);
+sheep(2000,1110);
+wolf(700,1400);
+wolf(2400,1400);
+wolf(1500,1400);
+
+dog(dogX, y - 150);
+//code for gravity from Chat GPT
+if (dogX < 1500) {
+// as long as character is not there yet
+
+if (keyIsDown(39)) {
+dogX = dogX + speed;
+}
+if (keyIsDown(37)) {
+dogX = dogX - speed;
+}
+
+y += velocityY;
+
+if (y < groundY) {
+// If the character is in the air
+velocityY += gravity; // Apply gravity
+} else {
+// If the character is on the ground
+velocityY = 0; // Stop vertical velocity
+y = groundY; // Reset to ground level
+}
+} else {
+//call result screen when done
+state = "result";
+}
+
+if (dogY < 500) {
+velocityY = 0;
+}
 }
 
 // Handle jumping from P5 website
@@ -469,7 +592,7 @@ if (mouseIsPressed) {
 }
 
 
-let state = "start";
+let state = "game3";
 
 function mouseClicked() {
 if (state === "instruction") {
@@ -567,3 +690,4 @@ resetlvl();
 state = "start";
 }
 }
+ 

@@ -136,10 +136,11 @@ function sheep(x, y) {
 
 class Sheep {
   constructor(x, y) {
-    this.name = name;
-
     this.x = x;
     this.y = y;
+  }
+  collect() {
+    console.log("collected!");
   }
 
   draw() {
@@ -152,6 +153,11 @@ const sheep0 = new Sheep(550, 230); // instructiona
 const sheep1 = new Sheep(550, 490); //lvl1
 const sheep2 = new Sheep(360, 380); //lvl 1
 const sheep3 = new Sheep(540, 330); //lvl 1
+
+const sheep6 = new Sheep(350, 380); // lvl 3
+const sheep7 = new Sheep(650, 380); // lvl 3
+//sheep(1000,1110);
+//sheep(2000,1110);
 
 //sheep(1000, 1500);
 //sheep(1670, 960);
@@ -175,6 +181,11 @@ class Wolf {
 const wolf0 = new Wolf(500, 400);
 const wolf1 = new Wolf(100, 500);
 const wolf2 = new Wolf(500, 450);
+const wolf3 = new Wolf(200, 450);
+
+//wolf(700,1400);
+//wolf(2400,1400);
+//wolf(1500,1400);
 
 function barn(x, y) {
   //barn
@@ -285,17 +296,6 @@ function buttons() {
   text("INSTRUCTIONS", 345, 352);
 }
 
-function buttonLose() {
-  fill(255);
-  rect(300, 200, 250, 50, 10);
-  rect(300, 320, 250, 50, 10);
-  fill(0, 0, 0);
-  textSize(20);
-  text("TRY AGAIN", 340, 232);
-  textSize(20);
-  text("LEVELS", 302, 352);
-}
-
 function resetlvl() {
   dogY = 500;
   dogX = 0;
@@ -375,7 +375,6 @@ function levelScreen() {
   text("back to start", 370, 405, 200, 50);
 }
 
-let canJump = true;
 function gameScreen() {
   //background(190, 190, 255);
   gameBackground();
@@ -429,6 +428,10 @@ function gameScreen() {
   sheep1.draw();
   sheep2.draw();
   sheep3.draw();
+
+  if (dogX === sheep1.x && dogY === sheep1.y) {
+    console.log("lol");
+  }
 }
 
 function gameScreen2() {
@@ -466,21 +469,8 @@ function gameScreen2() {
   if (dogY < 500) {
     velocityY = 0;
   }
-  for (let Wolf of wolves) {
-    Wolf.draw();
-  }
 
-  function checkCollisions() {
-    this.wolves.forEach((Wolf) => {
-      let distance = dist(dogX === wolf.x && dogY === wolf.y);
-      {
-        if (distance < 10) {
-          console.log("lol");
-        }
-      }
-    });
-  }
-
+  brick(brick3);
   for (let brick of bricks) {
     if (
       dogX + 50 > brick.x &&
@@ -492,11 +482,22 @@ function gameScreen2() {
       y = brick.y - 50;
     }
   }
-  brick(brick3);
 }
 
 function gameScreen3() {
-  background(255, 255, 0);
+  gameBackground();
+  brick(brick0);
+  brick(brick1);
+  barn(100, 250);
+
+  sheep6.draw();
+  sheep7.draw();
+
+  wolf2.draw();
+  wolf3.draw();
+
+  //sheep(1000,1110);
+  //sheep(2000,1110);
 }
 
 // Handle jumping from P5 website
@@ -570,7 +571,7 @@ function draw() {
   }
 }
 
-let state = "start";
+let state = "game3";
 
 function mouseClicked() {
   if (state === "instruction") {

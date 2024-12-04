@@ -73,6 +73,7 @@ function dog(x, y) {
   pop();
 }
 
+/*
 function sheep(x, y) {
   noStroke();
 
@@ -131,7 +132,30 @@ function sheep(x, y) {
   rect(x * c + 40 * c, y * c + 80 * c, 60 * c, 20 * c);
   rect(x * c + 60 * c, y * c + 100 * c, 20 * c, 20 * c);
 }
+  */
 
+class Sheep {
+  constructor(x, y) {
+    this.name = name;
+
+    this.x = x;
+    this.y = y;
+  }
+
+  draw() {
+    fill(255);
+    ellipse(this.x, this.y, 50, 50);
+  }
+}
+
+const sheep0 = new Sheep(550, 230); // instructiona
+const sheep1 = new Sheep(550, 490); //lvl1
+const sheep2 = new Sheep(360, 380); //lvl 1
+const sheep3 = new Sheep(540, 330); //lvl 1
+
+//sheep(1000, 1500);
+//sheep(1670, 960);
+//zsheep(2000, 1500);
 class Wolf {
   constructor(x, y) {
     this.x = x;
@@ -144,11 +168,14 @@ class Wolf {
 
   draw() {
     fill(0);
-    ellipse(450, y, 50, 50);
+    ellipse(this.x, this.y, 50, 50);
   }
 }
 
-let wolves = [new Wolf(100, 500), new Wolf(500, 450)];
+const wolf0 = new Wolf(500, 400);
+const wolf1 = new Wolf(100, 500);
+const wolf2 = new Wolf(500, 450);
+
 function barn(x, y) {
   //barn
   fill(200, 0, 10);
@@ -219,7 +246,7 @@ let brick3 = {
 let bricks = [
   { x: 510, y: 443, width: 240, height: 20 }, //lvl 1
   { x: 780, y: 405, width: 240, height: 20 }, //lvl 1
-  { x: 360, y: 405, width: 240, height: 20 }, //lvl 2
+  // { x: 360, y: 405, width: 240, height: 20 }, //lvl 2
 ];
 
 function cloud(x, y) {
@@ -234,16 +261,6 @@ function cloud(x, y) {
   ellipse(cloudX + 455, cloudY - 50, 100, 60);
   ellipse(cloudX + 510, cloudY - 30, 100, 50);
   ellipse(cloudX + 455, cloudY - 20, 100, 30);
-}
-
-function arrow(x, y) {
-  push();
-  stroke(0, 0, 0);
-  strokeWeight(5);
-  line(x, y, 375, 360);
-  line(x, y, 365, 350);
-  line(x, y, 385, 350);
-  pop();
 }
 
 function gameBackground() {
@@ -266,17 +283,6 @@ function buttons() {
   text("START", 390, 232);
   textSize(20);
   text("INSTRUCTIONS", 345, 352);
-}
-
-function buttonWin() {
-  fill(255);
-  rect(300, 200, 250, 50, 10);
-  rect(300, 320, 250, 50, 10);
-  fill(0, 0, 0);
-  textSize(20);
-  text("NEXT LEVEL", 365, 232);
-  textSize(20);
-  text("LEVELS", 380, 352);
 }
 
 function buttonLose() {
@@ -303,7 +309,7 @@ function startScreen() {
   textSize(50);
   text("HERD HERO", 270, 100, 400, 100);
   brick(brick0);
-  sheep(2000, 1110);
+  //sheep(2000, 1110);
   dog(300, 350);
   barn(90, 250);
 }
@@ -349,9 +355,9 @@ function instructionScreen() {
   line(490, 327, 475, 315);
   pop();
 
-  for (let Wolf of wolves) {
-    Wolf.draw();
-  }
+  barn(10, 30);
+  sheep0.draw();
+  wolf0.draw();
 }
 
 function levelScreen() {
@@ -369,6 +375,7 @@ function levelScreen() {
   text("back to start", 370, 405, 200, 50);
 }
 
+let canJump = true;
 function gameScreen() {
   //background(190, 190, 255);
   gameBackground();
@@ -397,7 +404,7 @@ function gameScreen() {
     }
   } else {
     //call result screen when done
-    state = "result";
+    state = "win";
   }
 
   if (dogY < 500) {
@@ -419,9 +426,9 @@ function gameScreen() {
   brick(brick1);
   brick(brick2);
   barn(2000, 1000);
-  sheep(1000, 1500);
-  sheep(1670, 960);
-  sheep(2000, 1500);
+  sheep1.draw();
+  sheep2.draw();
+  sheep3.draw();
 }
 
 function gameScreen2() {
@@ -453,7 +460,7 @@ function gameScreen2() {
     }
   } else {
     //call result screen when done
-    state = "result";
+    state = "win";
   }
 
   if (dogY < 500) {
@@ -494,7 +501,6 @@ function gameScreen3() {
 
 // Handle jumping from P5 website
 function keyPressed() {
-  //let GroundOrBrick = y === groundY;
   let onSurface = false;
 
   if (dogY === groundY) {
@@ -503,39 +509,45 @@ function keyPressed() {
   }
 
   for (let brick of bricks) {
-    if (dogY === brick.y) {
-      onSurface = true;
-    }
-  }
-
-  /*
-  for (let brick of bricks) {
-    // if dog on brick
     if (
       dogX + 50 > brick.x &&
       dogX < brick.x + brick.width &&
-      y + 50 >= brick.y &&
+      y + 50 > brick.y &&
       y + 50 <= brick.y + brick.height
     ) {
       onSurface = true;
     }
   }
-      */
 
   if (keyCode === 32 && onSurface) {
     // Space bar, on the ground and brick
     velocityY = -jump; // jump
+    onSurface = false; // Disable further jumping until landing
   }
 }
 
-function resultScreen() {
+function loseScreen() {
   gameBackground();
-  //if(allSheepCollected) {
-  //om hunden inte har alla får:
-  buttonLose();
-  // } else {
-  buttonWin();
-  // }
+  fill(255);
+  rect(300, 200, 250, 50, 10);
+  rect(300, 320, 250, 50, 10);
+  fill(0, 0, 0);
+  textSize(20);
+  text("TRY AGAIN", 340, 232);
+  textSize(20);
+  text("LEVELS", 302, 352);
+}
+
+function winScreen() {
+  gameBackground();
+  fill(255);
+  rect(300, 200, 250, 50, 10);
+  rect(300, 320, 250, 50, 10);
+  fill(0, 0, 0);
+  textSize(20);
+  text("NEXT LEVEL", 365, 232);
+  textSize(20);
+  text("LEVELS", 380, 352);
 }
 
 function draw() {
@@ -545,8 +557,10 @@ function draw() {
     instructionScreen();
   } else if (state === "game") {
     gameScreen();
-  } else if (state === "result") {
-    resultScreen();
+  } else if (state === "lose") {
+    loseScreen();
+  } else if (state === "win") {
+    winScreen();
   } else if (state === "levels") {
     levelScreen();
   } else if (state === "game2") {
@@ -562,7 +576,7 @@ function mouseClicked() {
   if (state === "instruction") {
     state = "start";
   } else if (
-    state === "result" &&
+    state === "win" &&
     mouseX >= 250 &&
     mouseX <= 500 &&
     mouseY >= 320 &&
@@ -638,7 +652,7 @@ function mouseClicked() {
 
   //next lvl button
   else if (
-    state === "result" && //måste dock va olika för win / lose
+    state === "win" && //måste dock va olika för win / lose
     mouseX >= 300 &&
     mouseX <= 550 &&
     mouseY >= 200 &&
@@ -646,7 +660,8 @@ function mouseClicked() {
   ) {
     state = "game2";
   } else if (
-    state === "result" &&
+    state === "win" &&
+    state === "lose" &&
     mouseX >= 300 &&
     mouseX <= 550 &&
     mouseY >= 320 &&

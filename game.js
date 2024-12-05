@@ -326,7 +326,7 @@ function barn(x, y) {
 
 function brick(position) {
   fill(100, 20, 20);
-  rect(position.x, position.y, 120, 60);
+  rect(position.x, position.y, 120, 40);
 }
 
 //start bricks
@@ -350,11 +350,26 @@ let brick3 = {
   y: 350,
 };
 
-let bricks = [
+let bricks1 = [
   { x: 510, y: 443, width: 240, height: 20 }, //lvl 1,3
   { x: 780, y: 405, width: 240, height: 20 }, //lvl 1
+];
+
+let bricks2 = [
   { x: 360, y: 405, width: 240, height: 20 }, //lvl 2
-  { x: 800, y: 445, width: 240, height: 20 }, // lvl 3
+];
+
+let bricks3 = [
+  { x: 510, y: 443, width: 240, height: 20 }, //lvl 1,3
+  { x: 920, y: 445, width: 240, height: 20 }, // lvl 3
+];
+
+let bricksarray = [
+  { x: 510, y: 443, width: 240, height: 20 }, //lvl 1,3
+  { x: 780, y: 405, width: 240, height: 20 },
+  { x: 360, y: 405, width: 240, height: 20 },
+  { x: 510, y: 443, width: 240, height: 20 }, //lvl 1,3
+  { x: 920, y: 445, width: 240, height: 20 },
 ];
 
 function cloud(x, y) {
@@ -430,18 +445,23 @@ function resetlvl() {
 
 function startScreen() {
   gameBackground();
-  //buttons();
+
   fill(0);
   textSize(50);
   text("HERD HERO", 270, 100, 400, 100);
   brick(brick0);
-  //sheep(2000, 1110);
   dog(300, 350);
   barn(90, 250);
-  sheep4.draw();
 
-  buttonStart.draw();
-  buttonInstructions.draw();
+  sheep4.draw();
+  fill(255);
+  rect(300, 200, 250, 50, 10);
+  rect(300, 320, 250, 50, 10);
+  fill(0, 0, 0);
+  textSize(20);
+  text("START", 390, 232);
+  textSize(20);
+  text("INSTRUCTIONS", 345, 352);
 }
 
 function instructionScreen() {
@@ -492,9 +512,17 @@ function instructionScreen() {
 
 function levelScreen() {
   gameBackground();
-  buttonLevel1.draw();
-  buttonLevel2.draw();
-  buttonLevel3.draw();
+  rect(300, 180, 250, 50, 10);
+  rect(300, 320, 250, 50, 10);
+  rect(300, 250, 250, 50, 10);
+  rect(300, 390, 250, 50, 10);
+
+  fill(0, 0, 0);
+  textSize(20);
+  text("1", 420, 200, 50, 50);
+  text("2", 420, 270, 50, 50);
+  text("3", 420, 340, 50, 50);
+  text("back to start", 370, 405, 200, 50);
 }
 
 function gameScreen() {
@@ -532,7 +560,7 @@ function gameScreen() {
     velocityY = 0;
   }
 
-  for (let brick of bricks) {
+  for (let brick of bricks1) {
     if (
       dogX + 50 > brick.x &&
       dogX < brick.x + brick.width &&
@@ -591,7 +619,7 @@ function gameScreen2() {
 
   //console.log(bricks[(3)]);
 
-  for (let brick of bricks) {
+  for (let brick of bricks2) {
     if (
       dogX + 50 > brick.x &&
       dogX < brick.x + brick.width &&
@@ -619,7 +647,7 @@ function gameScreen3() {
 
   wolf2.draw();
   wolf3.draw();
-  for (let brick of bricks) {
+  for (let brick of bricks3) {
     if (
       dogX + 50 > brick.x &&
       dogX < brick.x + brick.width &&
@@ -660,18 +688,6 @@ function gameScreen3() {
   if (dogY < 500) {
     velocityY = 0;
   }
-
-  for (let brick of bricks) {
-    if (
-      dogX + 50 > brick.x &&
-      dogX < brick.x + brick.width &&
-      y + 50 > brick.y &&
-      y + 50 <= brick.y + brick.height
-    ) {
-      velocityY = 0;
-      y = brick.y - 50;
-    }
-  }
 }
 
 // Handle jumping from P5 website
@@ -683,7 +699,7 @@ function keyPressed() {
     onSurface = true;
   }
 
-  for (let brick of bricks) {
+  for (let brick of bricksarray) {
     if (
       dogX + 50 > brick.x &&
       dogX < brick.x + brick.width &&
@@ -694,7 +710,6 @@ function keyPressed() {
     }
   }
 
-  console.log(onSurface);
   if (keyCode === 32 && onSurface === true) {
     // Space bar, on the ground and brick
     velocityY = -jump; // jump
@@ -744,7 +759,7 @@ function draw() {
   }*/
 }
 
-let state = "start";
+let state = "game3";
 
 function mouseClicked() {
   if (state === "instruction") {
@@ -823,8 +838,7 @@ function mouseClicked() {
   ) {
     state = "start";
   } else if (
-
-  /*next lvl button
+    /*next lvl button
   else if (
     state === "result" && //måste dock va olika för win / lose
     mouseX >= 300 &&
@@ -840,6 +854,15 @@ function mouseClicked() {
     mouseY <= 370
   ) {
     state = "levels";
+  } else if (
+    // bakc to start
+    state === "levels" &&
+    mouseX >= 250 &&
+    mouseX <= 500 &&
+    mouseY >= 390 &&
+    mouseY <= 440
+  ) {
+    state = "start";
   } else if (state === "game2") {
     state = "start";
   } else if (state === "game3") {
@@ -849,3 +872,5 @@ function mouseClicked() {
     state = "start";
   }
 }
+
+// jumping functions https://editor.p5js.org/tnishida/sketches/Wv_-BBBaA

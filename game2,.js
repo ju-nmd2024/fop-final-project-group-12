@@ -22,9 +22,6 @@ function setup() {
 }
 
 function dog(x, y) {
-  push();
-  translate(x, y);
-  scale(-1, 1);
   noStroke();
 
   //body
@@ -227,8 +224,6 @@ function dog(x, y) {
     140 * s * s * s,
     40 * s * s * s
   );
-
-  pop();
 }
 
 function sheep(x, y) {

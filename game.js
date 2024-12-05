@@ -152,36 +152,14 @@ const sheep5 = new Sheep(210, 290); //lvl 2
 const sheep6 = new Sheep(300, 335); // lvl 3
 const sheep7 = new Sheep(600, 335); // lvl 3
 
-function isColliding(obj1, obj2) {
-  return (
-    obj1.x < obj2.x + obj2.width &&
-    obj1.x + obj1.width > obj2.x &&
-    obj1.y < obj2.y + obj2.height &&
-    obj1.y + obj1.height > obj2.y
-  );
-}
-
-// Example usage for collision detection
-let dogBoundingBox = {
-  x: dogX, // Dog's X position
-  y: dogY, // Dog's Y position
-  width: 160 * s, // Width of the dog scaled
-  height: 60 * s, // Height of the dog scaled
-};
-
-let sheepBoundingBox = {
-  x: sheep1.x, // Sheep's X position
-  y: sheep1.y, // Sheep's Y position
-  width: 160 * c, // Width of the sheep scaled
-  height: 80 * c, // Height of the sheep scaled
-};
-
-function checkCollision() {
-  if (isColliding(dogBoundingBox, sheepBoundingBox)) {
-    console.log("Collision detected!");
-    // Handle collision event, e.g., stop movement, decrement score, etc.
-  }
-}
+let sheepArray = [
+  { x: 500, y: 180, width: 100, height: 50 },
+  { x: 625, y: 335, width: 100, height: 50 },
+  { x: 640, y: 440, width: 100, height: 50 },
+  { x: 320, y: 335, width: 100, height: 50 },
+  { x: 610, y: 440, width: 100, height: 50 },
+  { x: 210, y: 290, width: 100, height: 50 },
+];
 
 class Wolf {
   constructor(x, y) {
@@ -282,6 +260,12 @@ const wolf0 = new Wolf(400, 400); // instruction
 const wolf1 = new Wolf(410, 400); // 2
 const wolf2 = new Wolf(490, 405); // 3
 const wolf3 = new Wolf(180, 400); // 3
+
+let wolfArray = [
+  { x: 410, y: 400, width: 100, height: 70 },
+  { x: 490, y: 400, width: 100, height: 70 },
+  { x: 180, y: 400, width: 100, height: 70 },
+];
 
 function barn(x, y) {
   //barn
@@ -497,7 +481,7 @@ function gameScreen() {
   gameBackground();
   barn(100, 250);
   dog(dogX, y - 150);
-  //code for gravity from Chat GPT
+  //code for gravity from Chat GPT, link at bottom
   if (dogX < 1500) {
     // as long as character is not there yet
 
@@ -527,6 +511,22 @@ function gameScreen() {
     velocityY = 0;
   }
 
+  for (let sheep of sheepArray) {
+    if (dist(dogX, dogY, sheep.x, sheep.y) < 50 + 50) {
+      console.log("collision");
+    }
+  }
+
+  /*
+    if (
+      dog.x <= sheep.x + sheep.width &&
+      dog.x + dog.width <= sheep.x &&
+      dog.y <= sheep.y + sheep.height && 
+      dog.y + dog.height <= sheep.y
+    ) {
+      console.log("!"); 
+    }*/
+
   for (let brick of bricks1) {
     if (
       dogX + 50 > brick.x &&
@@ -544,8 +544,6 @@ function gameScreen() {
   barn(2000, 1000);
   sheep1.draw();
   sheep2.draw();
-
-  checkCollision();
 }
 
 function gameScreen2() {
@@ -600,6 +598,18 @@ function gameScreen2() {
     sheep3.draw();
     sheep5.draw();
     wolf1.draw();
+
+    for (let sheep of sheepArray) {
+      if (dist(dogX, dogY, sheep.x, sheep.y) < 50 + 50) {
+        console.log("collision");
+      }
+    }
+  }
+
+  for (let wolf of wolfArray) {
+    if (dist(dogX, dogY, wolf.x, wolf.y) < 50 + 50) {
+      console.log("1");
+    }
   }
 }
 
@@ -655,6 +665,12 @@ function gameScreen3() {
   if (dogY < 500) {
     velocityY = 0;
   }
+
+  for (let sheep of sheepArray) {
+    if (dist(dogX, dogY, sheep.x, sheep.y) < 50 + 50) {
+      console.log("collision");
+    }
+  }
 }
 
 // Handle jumping from P5 website
@@ -686,10 +702,10 @@ function keyPressed() {
 
 function resultScreen() {
   gameBackground();
-  rect(300, 365, 250, 50, 10);
+  rect(300, 350, 250, 50, 10);
   fill(0);
   textSize(30);
-  text("Next level", 360, 400);
+  text("Next level", 360, 390);
 
   //buttonLevels.draw();
 }
@@ -713,22 +729,6 @@ function draw() {
   } else if (state === "levels") {
     levelScreen();
   }
-  /*
-  if (mouseIsPressed) {
-    if (buttonStart.hitTest(mouseX, mouseY)) {
-      state = "levels";
-    } else if (buttonLevels.hitTest(mouseX, mouseY)) {
-      state = "levels";
-    } else if (buttonLevel1.hitTest(mouseX, mouseY)) {
-      state = "game";
-    } else if (buttonLevel2.hitTest(mouseX, mouseY)) {
-      state = "game2";
-    } else if (buttonLevel3.hitTest(mouseX, mouseY)) {
-      state = "game3";
-    } else if (buttonInstructions.hitTest(mouseX, mouseY)) {
-      state = "instruction";
-    }
-  }*/
 }
 
 let state = "start";
@@ -741,13 +741,10 @@ function mouseClicked() {
     state === "result" &&
     mouseX >= 300 &&
     mouseX <= 550 &&
-    mouseY >= 365 &&
-    mouseY <= 320
+    mouseY >= 350 &&
+    mouseY <= 400
   ) {
     state = "levels";
-  } else if (state === "game") {
-    state = "start";
-    //startscreen
   } else if (
     //start button
     state === "start" &&
@@ -810,15 +807,6 @@ function mouseClicked() {
   ) {
     state = "start";
   } else if (
-    /*next lvl button
-  else if (
-    state === "result" && //måste dock va olika för win / lose
-    mouseX >= 300 &&
-    mouseX <= 550 &&
-    mouseY >= 200 &&
-    mouseY <= 250
-  ) {
-    state = "game2"; */
     state === "result" &&
     mouseX >= 300 &&
     mouseX <= 550 &&
@@ -835,10 +823,6 @@ function mouseClicked() {
     mouseY <= 440
   ) {
     state = "start";
-  } else if (state === "game2") {
-    state = "start";
-  } else if (state === "game3") {
-    state = "start";
   } else if (state === "result") {
     resetlvl();
     state = "start";
@@ -846,3 +830,4 @@ function mouseClicked() {
 }
 
 // jumping functions https://editor.p5js.org/tnishida/sketches/Wv_-BBBaA
+// gravity chatgpt https://chatgpt.com/share/6751ba57-6c54-8001-becb-779bb58e3210

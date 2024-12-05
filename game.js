@@ -430,12 +430,7 @@ class Button {
   }
 }
 
-const buttonStart = new Button(300, 200, 250, 50, "START");
-const buttonInstructions = new Button(300, 320, 250, 50, "INSTRUCTIONS");
-const buttonLevels = new Button(300, 320, 250, 50, "LEVELS");
-const buttonLevel1 = new Button(300, 180, 250, 50, "1");
-const buttonLevel2 = new Button(300, 250, 250, 50, "2");
-const buttonLevel3 = new Button(300, 320, 250, 50, "3");
+//const buttonLevels = new Button(300, 320, 250, 50, "LEVELS");
 
 function resetlvl() {
   dogY = 500;
@@ -719,7 +714,12 @@ function keyPressed() {
 
 function resultScreen() {
   gameBackground();
-  buttonLevels.draw();
+  rect(300, 365, 250, 50, 10);
+  fill(0);
+  textSize(30);
+  text("Next level", 360, 400);
+
+  //buttonLevels.draw();
 }
 
 function draw() {
@@ -759,24 +759,24 @@ function draw() {
   }*/
 }
 
-let state = "game3";
+let state = "start";
 
 function mouseClicked() {
   if (state === "instruction") {
     state = "start";
   } else if (
+    //levels
     state === "result" &&
-    mouseX >= 250 &&
-    mouseX <= 500 &&
-    mouseY >= 320 &&
-    mouseY <= 370
+    mouseX >= 300 &&
+    mouseX <= 550 &&
+    mouseY >= 365 &&
+    mouseY <= 320
   ) {
     state = "levels";
-  } /* else if (state === "game")
-    //bara för redigeringen
-    state = "start"; */
-  //startscreen
-  else if (
+  } else if (state === "game") {
+    state = "start";
+    //startscreen
+  } else if (
     //start button
     state === "start" &&
     mouseX >= 250 &&

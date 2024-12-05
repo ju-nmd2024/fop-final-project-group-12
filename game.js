@@ -142,7 +142,7 @@ class Sheep {
   }
 }
 
-const sheep0 = new Sheep(550, 230); // instructiona
+const sheep0 = new Sheep(500, 180); // instructiona
 const sheep4 = new Sheep(625, 335); // start
 const sheep1 = new Sheep(640, 440); //lvl1
 const sheep2 = new Sheep(320, 335); //lvl 1
@@ -278,7 +278,7 @@ class Wolf {
   }
 }
 
-const wolf0 = new Wolf(500, 400); // instruction
+const wolf0 = new Wolf(400, 400); // instruction
 const wolf1 = new Wolf(410, 400); // 2
 const wolf2 = new Wolf(490, 405); // 3
 const wolf3 = new Wolf(180, 400); // 3
@@ -398,38 +398,6 @@ function gameBackground() {
   cloud();
 }
 
-class Button {
-  constructor(x, y, width, height, text) {
-    this.x = x;
-    this.y = y;
-    this.width = width;
-    this.height = height;
-    this.text = text;
-  }
-  draw() {
-    push();
-    translate(this.x, this.y);
-    fill(255);
-    rect(0, 0, this.width, this.height);
-    //text
-    noStroke();
-    fill(0, 0, 0);
-    textSize(this.height / 2);
-    textAlign(CENTER);
-    text(this.text, 0, this.height / 4, this.width);
-    pop();
-  }
-
-  hitTest(x, y) {
-    return (
-      x > this.x &&
-      x < this.x + this.width &&
-      y > this.y &&
-      y < this.y + this.height
-    );
-  }
-}
-
 //const buttonLevels = new Button(300, 320, 250, 50, "LEVELS");
 
 function resetlvl() {
@@ -498,9 +466,13 @@ function instructionScreen() {
   line(460, 327, 490, 327);
   line(490, 327, 475, 340);
   line(490, 327, 475, 315);
-  pop();
 
-  barn(10, 30);
+  line(680, 195, 640, 195);
+  line(660, 180, 680, 195);
+  line(660, 210, 680, 195);
+  pop();
+  barn(10, 2);
+
   sheep0.draw();
   wolf0.draw();
 }

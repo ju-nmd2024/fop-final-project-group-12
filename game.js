@@ -6,11 +6,12 @@ let x = 100;
 let s = 0.3; //scale dog
 let c = 0.3; //scale sheep
 let b = 1; //scale barn
+let w = 0.4;
 const jump = 20;
 const gravity = 1;
-const groundY = 500;
+const groundY = 480;
 let jumpheight = 2;
-let velocityY = 2;
+let velocityY = 0.5;
 let dogY = 500;
 let dogX = x;
 
@@ -73,119 +74,214 @@ function dog(x, y) {
   pop();
 }
 
-/*
-function sheep(x, y) {
-  noStroke();
-
-  fill(190);
-  rect(x * c + 220 * c, y * c + 180 * c, 40 * c, 40 * c);
-
-  //body
-  fill(220, 220, 220);
-  rect(x * c, y * c + 40 * c, 160 * c, 80 * c);
-  rect(x * c + 20 * c, y * c + 120 * c, 120 * c, 20 * c);
-
-  //feet
-  rect(x * c + 80 * c, y * c + 180 * c, 40 * c, 40 * c);
-  rect(x * c + 140 * c, y * c + 180 * c, 40 * c, 40 * c);
-  rect(x * c + 240 * c, y * c + 180 * c, 40 * c, 40 * c);
-
-  //wool
-  fill(169, 169, 169);
-  rect(x * c, y * c, 180 * c, 40 * c);
-  rect(x * c + 140 * c, y * c - 20 * c, 120 * c, 20 * c);
-  rect(x * c + 180 * c, y * c, 120 * c, 40 * c);
-  rect(x * c + 160 * c, y * c + 40 * c, 220 * c, 40 * c);
-  rect(x * c + 160 * c, y * c + 80 * c, 180 * c, 40 * c);
-  rect(x * c + 140 * c, y * c + 120 * c, 160 * c, 20 * c);
-  rect(x * c + 80 * c, y * c + 140 * c, 200 * c, 20 * c);
-
-  //wool outline
-  fill(105, 105, 105);
-  rect(x * c, y * c, 60 * c, 20 * c);
-  rect(x * c + 40 * c, y * c + 20 * c, 20 * c, 20 * c);
-  rect(x * c - 20 * c, y * c + 20 * c, 20 * c, 20 * c);
-  rect(x * c, y * c + 40 * c, 20 * c, 20 * c);
-  rect(x * c + 60 * c, y * c - 20 * c, 80 * c, 20 * c);
-  rect(x * c + 120 * c, y * c, 20 * c, 40 * c);
-  rect(x * c + 140 * c, y * c, 40 * c, 20 * c);
-  rect(x * c + 180 * c, y * c + 20 * c, 20 * c, 20 * c);
-  rect(x * c + 140 * c, y * c + 40 * c, 40 * c, 20 * c);
-  rect(x * c + 140 * c, y * c - 40 * c, 140 * c, 20 * c);
-  rect(x * c + 260 * c, y * c - 20 * c, 60 * c, 20 * c);
-  rect(x * c + 300 * c, y * c, 20 * c, 40 * c);
-  rect(x * c + 320 * c, y * c + 20 * c, 40 * c, 20 * c);
-  rect(x * c + 360 * c, y * c + 40 * c, 20 * c, 40 * c);
-  rect(x * c + 340 * c, y * c + 80 * c, 40 * c, 20 * c);
-  rect(x * c + 320 * c, y * c + 20 * c, 20 * c, 100 * c);
-  rect(x * c + 300 * c, y * c + 120 * c, 40 * c, 20 * c);
-  rect(x * c + 280 * c, y * c + 140 * c, 40 * c, 20 * c);
-  rect(x * c + 60 * c, y * c + 160 * c, 240 * c, 20 * c);
-  rect(x * c + 60 * c, y * c + 140 * c, 20 * c, 20 * c);
-
-  //eyes
-  fill(0);
-  rect(x * c + 20 * c, y * c + 60 * c, 20 * c, 20 * c);
-  rect(x * c + 100 * c, y * c + 60 * c, 20 * c, 20 * c);
-  //nose
-  fill(255, 210, 230);
-  rect(x * c + 40 * c, y * c + 80 * c, 60 * c, 20 * c);
-  rect(x * c + 60 * c, y * c + 100 * c, 20 * c, 20 * c);
-}
-  */
-
 class Sheep {
   constructor(x, y) {
     this.x = x;
     this.y = y;
   }
-  collect() {
-    console.log("collected!");
-  }
-
   draw() {
+    /*
     fill(255);
-    ellipse(this.x, this.y, 50, 50);
+    ellipse(this.x, this.y, 50, 50);*/
+    let x = this.x;
+    let y = this.y;
+    fill(190);
+    rect(x + 220 * c, y + 180 * c, 40 * c, 40 * c);
+
+    //body
+    fill(220, 220, 220);
+    rect(x, y + 40 * c, 160 * c, 80 * c);
+    rect(x + 20 * c, y + 120 * c, 120 * c, 20 * c);
+
+    //feet
+    rect(x + 80 * c, y + 180 * c, 40 * c, 40 * c);
+    rect(x + 140 * c, y + 180 * c, 40 * c, 40 * c);
+    rect(x + 240 * c, y + 180 * c, 40 * c, 40 * c);
+
+    //wool
+    fill(169, 169, 169);
+    rect(x, y, 180 * c, 40 * c);
+    rect(x + 140 * c, y - 20 * c, 120 * c, 20 * c);
+    rect(x + 180 * c, y, 120 * c, 40 * c);
+    rect(x + 160 * c, y + 40 * c, 220 * c, 40 * c);
+    rect(x + 160 * c, y + 80 * c, 180 * c, 40 * c);
+    rect(x + 140 * c, y + 120 * c, 160 * c, 20 * c);
+    rect(x + 80 * c, y + 140 * c, 200 * c, 20 * c);
+
+    //wool outline
+    fill(105, 105, 105);
+    rect(x, y, 60 * c, 20 * c);
+    rect(x + 40 * c, y + 20 * c, 20 * c, 20 * c);
+    rect(x - 20 * c, y + 20 * c, 20 * c, 20 * c);
+    rect(x, y + 40 * c, 20, 20 * c);
+    rect(x + 60 * c, y - 20 * c, 80 * c, 20 * c);
+    rect(x + 120 * c, y, 20, 40 * c);
+    rect(x + 140 * c, y, 40 * c, 20 * c);
+    rect(x + 180 * c, y + 20 * c, 20 * c, 20 * c);
+    rect(x + 140 * c, y + 40 * c, 40 * c, 20 * c);
+    rect(x + 140 * c, y - 40 * c, 140 * c, 20 * c);
+    rect(x + 260 * c, y - 20 * c, 60 * c, 20 * c);
+    rect(x + 300 * c, y, 20 * c, 40 * c);
+    rect(x + 320 * c, y + 20 * c, 40 * c, 20 * c);
+    rect(x + 360 * c, y + 40 * c, 20 * c, 40 * c);
+    rect(x + 340 * c, y + 80 * c, 40 * c, 20 * c);
+    rect(x + 320 * c, y + 20 * c, 20 * c, 100 * c);
+    rect(x + 300 * c, y + 120 * c, 40 * c, 20 * c);
+    rect(x + 280 * c, y + 140 * c, 40 * c, 20 * c);
+    rect(x + 60 * c, y + 160 * c, 240 * c, 20 * c);
+    rect(x + 60 * c, y + 140 * c, 20 * c, 20 * c);
+
+    //eyes
+    fill(0);
+    rect(x + 20 * c, y + 60 * c, 20 * c, 20 * c);
+    rect(x + 100 * c, y + 60 * c, 20 * c, 20 * c);
+    //nose
+    fill(255, 210, 230);
+    rect(x + 40 * c, y + 80 * c, 60 * c, 20 * c);
+    rect(x + 60 * c, y + 100 * c, 20 * c, 20 * c);
   }
 }
 
 const sheep0 = new Sheep(550, 230); // instructiona
-const sheep1 = new Sheep(550, 490); //lvl1
-const sheep2 = new Sheep(360, 380); //lvl 1
-const sheep3 = new Sheep(540, 330); //lvl 1
+const sheep4 = new Sheep(625, 335); // start
+const sheep1 = new Sheep(640, 440); //lvl1
+const sheep2 = new Sheep(320, 335); //lvl 1
+const sheep3 = new Sheep(610, 440); //lvl 2
+const sheep5 = new Sheep(210, 290); //lvl 2
 
-const sheep6 = new Sheep(350, 380); // lvl 3
-const sheep7 = new Sheep(650, 380); // lvl 3
-//sheep(1000,1110);
-//sheep(2000,1110);
+const sheep6 = new Sheep(300, 335); // lvl 3
+const sheep7 = new Sheep(600, 335); // lvl 3
 
-//sheep(1000, 1500);
-//sheep(1670, 960);
-//zsheep(2000, 1500);
+function isColliding(obj1, obj2) {
+  return (
+    obj1.x < obj2.x + obj2.width &&
+    obj1.x + obj1.width > obj2.x &&
+    obj1.y < obj2.y + obj2.height &&
+    obj1.y + obj1.height > obj2.y
+  );
+}
+
+// Example usage for collision detection
+let dogBoundingBox = {
+  x: dogX, // Dog's X position
+  y: dogY, // Dog's Y position
+  width: 160 * s, // Width of the dog scaled
+  height: 60 * s, // Height of the dog scaled
+};
+
+let sheepBoundingBox = {
+  x: sheep1.x, // Sheep's X position
+  y: sheep1.y, // Sheep's Y position
+  width: 160 * c, // Width of the sheep scaled
+  height: 80 * c, // Height of the sheep scaled
+};
+
+function checkCollision() {
+  if (isColliding(dogBoundingBox, sheepBoundingBox)) {
+    console.log("Collision detected!");
+    // Handle collision event, e.g., stop movement, decrement score, etc.
+  }
+}
+
 class Wolf {
   constructor(x, y) {
     this.x = x;
     this.y = y;
   }
 
-  move() {
-    this.x -= 2; //moves to the left
-  }
-
   draw() {
-    fill(0);
-    ellipse(this.x, this.y, 50, 50);
+    let x = this.x;
+    let y = this.y;
+    noStroke();
+
+    //body
+
+    fill(190, 190, 190);
+
+    rect(x + 20 * w, y, 160 * w, 60 * w);
+
+    rect(x + 80 * w, y - 20 * w, 100 * w, 20 * w);
+
+    rect(x + 120 * w, y - 40 * w, 60 * w, 20 * w);
+
+    rect(x + 80 * w, y + 60 * w, 100 * w, 20 * w);
+
+    rect(x + 80 * w, y + 100 * w, 40 * w, 180 * w);
+
+    rect(x + 80 * w, y + 100 * w, 320 * w, 90 * w);
+
+    rect(x + 160 * w, y + 100 * w, 40 * w, 180 * w);
+
+    rect(x + 360 * w, y + 100 * w, 40 * w, 180 * w);
+
+    rect(x + 280 * w, y + 100 * w, 40 * w, 180 * w);
+
+    // flÃ¤ck
+
+    fill(105, 105, 105);
+
+    rect(x + 180 * w, y - 20 * w, 20 * w, 100 * w);
+
+    rect(x + 200 * w, y + 60 * w, 20 * w, 20 * w);
+
+    rect(x + 200 * w, y + 60 * w, 20 * w, 20 * w);
+
+    rect(x + 380 * w, y + 40 * w, 40 * w, 60 * w);
+
+    rect(x + 360 * w, y + 20 * w, 40 * w, 20 * w);
+
+    rect(x + 340 * w, y + 40 * w, 20 * w, 20 * w);
+
+    rect(x + 220 * w, y + 100 * w, 180 * w, 20 * w);
+
+    rect(x + 260 * w, y + 120 * w, 140 * w, 20 * w);
+
+    rect(x + 300 * w, y + 140 * w, 80 * w, 20 * w);
+
+    //Ã¶ron
+
+    rect(x + 100 * w, y - 80 * w, 20 * w, 20 * w);
+
+    rect(x + 160 * w, y - 60 * w, 40 * w, 40 * w);
+
+    rect(x + 180 * w, y - 80 * w, 20 * w, 20 * w);
+
+    rect(x + 100 * w, y - 60 * w, 40 * w, 40 * w);
+
+    //darkest spots
+
+    fill(0, 0, 0);
+
+    rect(x, y, 40 * w, 40 * w);
+
+    rect(x + 100 * w, y - 60 * w, 20 * w, 40 * w);
+
+    rect(x + 180 * w, y - 60 * w, 20 * w, 40 * w);
+
+    rect(x + 100 * w, y, 20 * w, 20 * w);
+
+    rect(x + 140 * w, y, 20 * w, 20 * w);
+
+    rect(x + 60 * w, y + 260 * w, 20 * w, 20 * w);
+
+    rect(x + 140 * w, y + 260 * w, 20 * w, 20 * w);
+
+    rect(x + 340 * w, y + 260 * w, 20 * w, 20 * w);
+
+    rect(x + 260 * w, y + 260 * w, 20 * w, 20 * w);
+
+    //halsband
+
+    fill(190, 190, 190);
+
+    rect(x + 80 * w, y + 80 * w, 140 * w, 40 * w);
   }
 }
 
-const wolf0 = new Wolf(500, 400);
-const wolf1 = new Wolf(100, 500);
-const wolf2 = new Wolf(500, 450);
-const wolf3 = new Wolf(200, 450);
-
-//wolf(700,1400);
-//wolf(2400,1400);
-//wolf(1500,1400);
+const wolf0 = new Wolf(500, 400); // instruction
+const wolf1 = new Wolf(410, 400); // 2
+const wolf2 = new Wolf(490, 405); // 3
+const wolf3 = new Wolf(180, 400); // 3
 
 function barn(x, y) {
   //barn
@@ -230,7 +326,7 @@ function barn(x, y) {
 
 function brick(position) {
   fill(100, 20, 20);
-  rect(position.x, position.y, 100, 20);
+  rect(position.x, position.y, 120, 60);
 }
 
 //start bricks
@@ -255,9 +351,10 @@ let brick3 = {
 };
 
 let bricks = [
-  { x: 510, y: 443, width: 240, height: 20 }, //lvl 1
+  { x: 510, y: 443, width: 240, height: 20 }, //lvl 1,3
   { x: 780, y: 405, width: 240, height: 20 }, //lvl 1
-  // { x: 360, y: 405, width: 240, height: 20 }, //lvl 2
+  { x: 360, y: 405, width: 240, height: 20 }, //lvl 2
+  { x: 800, y: 445, width: 240, height: 20 }, // lvl 3
 ];
 
 function cloud(x, y) {
@@ -286,25 +383,54 @@ function gameBackground() {
   cloud();
 }
 
-function buttons() {
-  rect(300, 200, 250, 50, 10);
-  rect(300, 320, 250, 50, 10);
-  fill(0, 0, 0);
-  textSize(20);
-  text("START", 390, 232);
-  textSize(20);
-  text("INSTRUCTIONS", 345, 352);
+class Button {
+  constructor(x, y, width, height, text) {
+    this.x = x;
+    this.y = y;
+    this.width = width;
+    this.height = height;
+    this.text = text;
+  }
+  draw() {
+    push();
+    translate(this.x, this.y);
+    fill(255);
+    rect(0, 0, this.width, this.height);
+    //text
+    noStroke();
+    fill(0, 0, 0);
+    textSize(this.height / 2);
+    textAlign(CENTER);
+    text(this.text, 0, this.height / 4, this.width);
+    pop();
+  }
+
+  hitTest(x, y) {
+    return (
+      x > this.x &&
+      x < this.x + this.width &&
+      y > this.y &&
+      y < this.y + this.height
+    );
+  }
 }
+
+const buttonStart = new Button(300, 200, 250, 50, "START");
+const buttonInstructions = new Button(300, 320, 250, 50, "INSTRUCTIONS");
+const buttonLevels = new Button(300, 320, 250, 50, "LEVELS");
+const buttonLevel1 = new Button(300, 180, 250, 50, "1");
+const buttonLevel2 = new Button(300, 250, 250, 50, "2");
+const buttonLevel3 = new Button(300, 320, 250, 50, "3");
 
 function resetlvl() {
   dogY = 500;
-  dogX = 0;
+  dogX = 100;
   gamesState = true;
 }
 
 function startScreen() {
   gameBackground();
-  buttons();
+  //buttons();
   fill(0);
   textSize(50);
   text("HERD HERO", 270, 100, 400, 100);
@@ -312,6 +438,10 @@ function startScreen() {
   //sheep(2000, 1110);
   dog(300, 350);
   barn(90, 250);
+  sheep4.draw();
+
+  buttonStart.draw();
+  buttonInstructions.draw();
 }
 
 function instructionScreen() {
@@ -320,17 +450,17 @@ function instructionScreen() {
   textSize(60);
   text("Instructions", 250, 120);
   textSize(20);
-  text("Collect all sheeps and return to the barn", 160, 200);
+  text("Collect all sheeps and return to the barn", 120, 200);
 
   text(
     "Use the arrow keys to move the character, use the spacebar to jump",
-    160,
+    120,
     250,
     300
   );
   text(
     "Watch out for the wolves! They will take all your sheeps!",
-    160,
+    120,
     370,
     300
   );
@@ -362,17 +492,9 @@ function instructionScreen() {
 
 function levelScreen() {
   gameBackground();
-  rect(300, 180, 250, 50, 10);
-  rect(300, 320, 250, 50, 10);
-  rect(300, 250, 250, 50, 10);
-  rect(300, 390, 250, 50, 10);
-
-  fill(0, 0, 0);
-  textSize(20);
-  text("1", 420, 200, 50, 50);
-  text("2", 420, 270, 50, 50);
-  text("3", 420, 340, 50, 50);
-  text("back to start", 370, 405, 200, 50);
+  buttonLevel1.draw();
+  buttonLevel2.draw();
+  buttonLevel3.draw();
 }
 
 function gameScreen() {
@@ -403,7 +525,7 @@ function gameScreen() {
     }
   } else {
     //call result screen when done
-    state = "win";
+    state = "result";
   }
 
   if (dogY < 500) {
@@ -427,18 +549,13 @@ function gameScreen() {
   barn(2000, 1000);
   sheep1.draw();
   sheep2.draw();
-  sheep3.draw();
 
-  if (dogX === sheep1.x && dogY === sheep1.y) {
-    console.log("lol");
-  }
+  checkCollision();
 }
 
 function gameScreen2() {
   gameBackground();
   barn(100, 250);
-  fill(190, 190, 255);
-  rect(460, 500, 150, 100);
   dog(dogX, y - 150);
   //code for gravity from Chat GPT
   if (dogX < 1500) {
@@ -463,7 +580,7 @@ function gameScreen2() {
     }
   } else {
     //call result screen when done
-    state = "win";
+    state = "result";
   }
 
   if (dogY < 500) {
@@ -471,6 +588,9 @@ function gameScreen2() {
   }
 
   brick(brick3);
+
+  //console.log(bricks[(3)]);
+
   for (let brick of bricks) {
     if (
       dogX + 50 > brick.x &&
@@ -481,6 +601,10 @@ function gameScreen2() {
       velocityY = 0;
       y = brick.y - 50;
     }
+
+    sheep3.draw();
+    sheep5.draw();
+    wolf1.draw();
   }
 }
 
@@ -495,18 +619,46 @@ function gameScreen3() {
 
   wolf2.draw();
   wolf3.draw();
+  for (let brick of bricks) {
+    if (
+      dogX + 50 > brick.x &&
+      dogX < brick.x + brick.width &&
+      y + 50 > brick.y &&
+      y + 50 <= brick.y + brick.height
+    ) {
+      velocityY = 0;
+      y = brick.y - 50;
+    }
+  }
 
-  //sheep(1000,1110);
-  //sheep(2000,1110);
-}
+  dog(dogX, y - 150); //code for gravity from Chat GPT
+  if (dogX < 1500) {
+    // as long as character is not there yet
 
-// Handle jumping from P5 website
-function keyPressed() {
-  let onSurface = false;
+    if (keyIsDown(39)) {
+      dogX = dogX + speed;
+    }
+    if (keyIsDown(37)) {
+      dogX = dogX - speed;
+    }
 
-  if (dogY === groundY) {
-    //if dog on ground
-    onSurface = true;
+    y += velocityY;
+
+    if (y < groundY) {
+      // If the character is in the air
+      velocityY += gravity; // Apply gravity
+    } else {
+      // If the character is on the ground
+      velocityY = 0; // Stop vertical velocity
+      y = groundY; // Reset to ground level
+    }
+  } else {
+    //call result screen when done
+    state = "result";
+  }
+
+  if (dogY < 500) {
+    velocityY = 0;
   }
 
   for (let brick of bricks) {
@@ -516,39 +668,43 @@ function keyPressed() {
       y + 50 > brick.y &&
       y + 50 <= brick.y + brick.height
     ) {
+      velocityY = 0;
+      y = brick.y - 50;
+    }
+  }
+}
+
+// Handle jumping from P5 website
+function keyPressed() {
+  let onSurface = false;
+
+  if (y === groundY) {
+    //if dog on ground
+    onSurface = true;
+  }
+
+  for (let brick of bricks) {
+    if (
+      dogX + 50 > brick.x &&
+      dogX < brick.x + brick.width &&
+      y + 50 >= brick.y &&
+      y + 50 <= brick.y + brick.height
+    ) {
       onSurface = true;
     }
   }
 
-  if (keyCode === 32 && onSurface) {
+  console.log(onSurface);
+  if (keyCode === 32 && onSurface === true) {
     // Space bar, on the ground and brick
     velocityY = -jump; // jump
     onSurface = false; // Disable further jumping until landing
   }
 }
 
-function loseScreen() {
+function resultScreen() {
   gameBackground();
-  fill(255);
-  rect(300, 200, 250, 50, 10);
-  rect(300, 320, 250, 50, 10);
-  fill(0, 0, 0);
-  textSize(20);
-  text("TRY AGAIN", 340, 232);
-  textSize(20);
-  text("LEVELS", 302, 352);
-}
-
-function winScreen() {
-  gameBackground();
-  fill(255);
-  rect(300, 200, 250, 50, 10);
-  rect(300, 320, 250, 50, 10);
-  fill(0, 0, 0);
-  textSize(20);
-  text("NEXT LEVEL", 365, 232);
-  textSize(20);
-  text("LEVELS", 380, 352);
+  buttonLevels.draw();
 }
 
 function draw() {
@@ -558,35 +714,52 @@ function draw() {
     instructionScreen();
   } else if (state === "game") {
     gameScreen();
-  } else if (state === "lose") {
-    loseScreen();
-  } else if (state === "win") {
-    winScreen();
+  } else if (state === "result") {
+    resultScreen();
+    resetlvl();
   } else if (state === "levels") {
     levelScreen();
   } else if (state === "game2") {
     gameScreen2();
   } else if (state === "game3") {
     gameScreen3();
+  } else if (state === "levels") {
+    levelScreen();
   }
+  /*
+  if (mouseIsPressed) {
+    if (buttonStart.hitTest(mouseX, mouseY)) {
+      state = "levels";
+    } else if (buttonLevels.hitTest(mouseX, mouseY)) {
+      state = "levels";
+    } else if (buttonLevel1.hitTest(mouseX, mouseY)) {
+      state = "game";
+    } else if (buttonLevel2.hitTest(mouseX, mouseY)) {
+      state = "game2";
+    } else if (buttonLevel3.hitTest(mouseX, mouseY)) {
+      state = "game3";
+    } else if (buttonInstructions.hitTest(mouseX, mouseY)) {
+      state = "instruction";
+    }
+  }*/
 }
 
-let state = "game3";
+let state = "start";
 
 function mouseClicked() {
   if (state === "instruction") {
     state = "start";
   } else if (
-    state === "win" &&
+    state === "result" &&
     mouseX >= 250 &&
     mouseX <= 500 &&
     mouseY >= 320 &&
     mouseY <= 370
   ) {
     state = "levels";
-  } else if (state === "game")
+  } /* else if (state === "game")
     //bara för redigeringen
-    state = "start";
+    state = "start"; */
   //startscreen
   else if (
     //start button
@@ -649,20 +822,18 @@ function mouseClicked() {
     mouseY <= 440
   ) {
     state = "start";
-  }
+  } else if (
 
-  //next lvl button
+  /*next lvl button
   else if (
-    state === "win" && //måste dock va olika för win / lose
+    state === "result" && //måste dock va olika för win / lose
     mouseX >= 300 &&
     mouseX <= 550 &&
     mouseY >= 200 &&
     mouseY <= 250
   ) {
-    state = "game2";
-  } else if (
-    state === "win" &&
-    state === "lose" &&
+    state = "game2"; */
+    state === "result" &&
     mouseX >= 300 &&
     mouseX <= 550 &&
     mouseY >= 320 &&

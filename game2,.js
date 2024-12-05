@@ -30,202 +30,202 @@ function dog(x, y) {
   //body
   fill(222, 184, 135);
   rect(
-    x * s * t * t + 20 * s * t * t,
-    y * s * t * t,
-    160 * s * t * t,
-    60 * s * t * t
+    x * s * s * s + 20 * s * s * s,
+    y * s * s * s,
+    160 * s * s * s,
+    60 * s * s * s
   );
   rect(
-    x * s * t * t + 80 * s * t * t,
-    y * s * t * t - 20 * s * t * t,
-    100 * s * t * t,
-    20 * s * t * t
+    x * s * s * s + 80 * s * s * s,
+    y * s * s * s - 20 * s * s * s,
+    100 * s * s * s,
+    20 * s * s * s
   );
   rect(
-    x * s * t * t + 120 * s * t * t,
-    y * s * t * t - 40 * s * t * t,
-    60 * s * t * t,
-    20 * s * t * t
+    x * s * s * s + 120 * s * s * s,
+    y * s * s * s - 40 * s * s * s,
+    60 * s * s * s,
+    20 * s * s * s
   );
 
   rect(
-    x * s * t * t + 80 * s * t * t,
-    y * s * t * t + 60 * s * t * t,
-    100 * s * t * t,
-    20 * s * t * t
+    x * s * s * s + 80 * s * s * s,
+    y * s * s * s + 60 * s * s * s,
+    100 * s * s * s,
+    20 * s * s * s
   );
   rect(
-    x * s * t * t + 80 * s * t * t,
-    y * s * t * t + 100 * s * t * t,
-    40 * s * t * t,
-    180 * s * t * t
+    x * s * s * s + 80 * s * s * s,
+    y * s * s * s + 100 * s * s * s,
+    40 * s * s * s,
+    180 * s * s * s
   );
   rect(
-    x * s * t * t + 80 * s * t * t,
-    y * s * t * t + 100 * s * t * t,
-    320 * s * t * t,
-    100 * s * t * t
+    x * s * s * s + 80 * s * s * s,
+    y * s * s * s + 100 * s * s * s,
+    320 * s * s * s,
+    100 * s * s * s
   );
   rect(
-    x * s * t * t + 160 * s * t * t,
-    y * s * t * t + 100 * s * t * t,
-    40 * s * t * t,
-    180 * s * t * t
+    x * s * s * s + 160 * s * s * s,
+    y * s * s * s + 100 * s * s * s,
+    40 * s * s * s,
+    180 * s * s * s
   );
   rect(
-    x * s * t * t + 360 * s * t * t,
-    y * s * t * t + 100 * s * t * t,
-    40 * s * t * t,
-    180 * s * t * t
+    x * s * s * s + 360 * s * s * s,
+    y * s * s * s + 100 * s * s * s,
+    40 * s * s * s,
+    180 * s * s * s
   );
   rect(
-    x * s * t * t + 280 * s * t * t,
-    y * s * t * t + 100 * s * t * t,
-    40 * s * t * t,
-    180 * s * t * t
+    x * s * s * s + 280 * s * s * s,
+    y * s * s * s + 100 * s * s * s,
+    40 * s * s * s,
+    180 * s * s * s
   );
 
   // fläck
   fill(139, 69, 19);
   rect(
-    x * s * t * t + 180 * s * t * t,
-    y * s * t * t - 20 * s * t * t,
-    20 * s * t * t,
-    100 * s * t * t
+    x * s * s * s + 180 * s * s * s,
+    y * s * s * s - 20 * s * s * s,
+    20 * s * s * s,
+    100 * s * s * s
   );
   rect(
-    x * s * t * t + 200 * s * t * t,
-    y * s * t * t + 60 * s * t * t,
-    20 * s * t * t,
-    20 * s * t * t
+    x * s * s * s + 200 * s * s * s,
+    y * s * s * s + 60 * s * s * s,
+    20 * s * s * s,
+    20 * s * s * s
   );
   rect(
-    x * s * t * t + 200 * s * t * t,
-    y * s * t * t + 60 * s * t * t,
-    20 * s * t * t,
-    20 * s * t * t
+    x * s * s * s + 200 * s * s * s,
+    y * s * s * s + 60 * s * s * s,
+    20 * s * s * s,
+    20 * s * s * s
   );
   rect(
-    x * s * t * t + 380 * s * t * t,
-    y * s * t * t + 40 * s * t * t,
-    40 * s * t * t,
-    60 * s * t * t
+    x * s * s * s + 380 * s * s * s,
+    y * s * s * s + 40 * s * s * s,
+    40 * s * s * s,
+    60 * s * s * s
   );
   rect(
-    x * s * t * t + 360 * s * t * t,
-    y * s * t * t + 20 * s * t * t,
-    40 * s * t * t,
-    20 * s * t * t
+    x * s * s * s + 360 * s * s * s,
+    y * s * s * s + 20 * s * s * s,
+    40 * s * s * s,
+    20 * s * s * s
   );
   rect(
-    x * s * t * t + 340 * s * t * t,
-    y * s * t * t + 40 * s * t * t,
-    20 * s * t * t,
-    20 * s * t * t
+    x * s * s * s + 340 * s * s * s,
+    y * s * s * s + 40 * s * s * s,
+    20 * s * s * s,
+    20 * s * s * s
   );
   rect(
-    x * s * t * t + 220 * s * t * t,
-    y * s * t * t + 100 * s * t * t,
-    180 * s * t * t,
-    20 * s * t * t
+    x * s * s * s + 220 * s * s * s,
+    y * s * s * s + 100 * s * s * s,
+    180 * s * s * s,
+    20 * s * s * s
   );
   rect(
-    x * s * t * t + 260 * s * t * t,
-    y * s * t * t + 120 * s * t * t,
-    140 * s * t * t,
-    20 * s * t * t
+    x * s * s * s + 260 * s * s * s,
+    y * s * s * s + 120 * s * s * s,
+    140 * s * s * s,
+    20 * s * s * s
   );
   rect(
-    x * s * t * t + 300 * s * t * t,
-    y * s * t * t + 140 * s * t * t,
-    80 * s * t * t,
-    20 * s * t * t
+    x * s * s * s + 300 * s * s * s,
+    y * s * s * s + 140 * s * s * s,
+    80 * s * s * s,
+    20 * s * s * s
   );
   //öron
   rect(
-    x * s * t * t + 100 * s * t * t,
-    y * s * t * t - 80 * s * t * t,
-    20 * s * t * t,
-    20 * s * t * t
+    x * s * s * s + 100 * s * s * s,
+    y * s * s * s - 80 * s * s * s,
+    20 * s * s * s,
+    20 * s * s * s
   );
   rect(
-    x * s * t * t + 160 * s * t * t,
-    y * s * t * t - 60 * s * t * t,
-    40 * s * t * t,
-    40 * s * t * t
+    x * s * s * s + 160 * s * s * s,
+    y * s * s * s - 60 * s * s * s,
+    40 * s * s * s,
+    40 * s * s * s
   );
   rect(
-    x * s * t * t + 180 * s * t * t,
-    y * s * t * t - 80 * s * t * t,
-    20 * s * t * t,
-    20 * s * t * t
+    x * s * s * s + 180 * s * s * s,
+    y * s * s * s - 80 * s * s * s,
+    20 * s * s * s,
+    20 * s * s * s
   );
   rect(
-    x * s * t * t + 100 * s * t * t,
-    y * s * t * t - 60 * s * t * t,
-    40 * s * t * t,
-    40 * s * t * t
+    x * s * s * s + 100 * s * s * s,
+    y * s * s * s - 60 * s * s * s,
+    40 * s * s * s,
+    40 * s * s * s
   );
 
   //darkest spots
   fill(80, 0, 0);
-  rect(x * s * t * t, y * s * t * t, 40 * s * t * t, 40 * s * t * t);
+  rect(x * s * s * s, y * s * s * s, 40 * s * s * s, 40 * s * s * s);
   rect(
-    x * s * t * t + 100 * s * t * t,
-    y * s * t * t - 60 * s * t * t,
-    20 * s * t * t,
-    40 * s * t * t
+    x * s * s * s + 100 * s * s * s,
+    y * s * s * s - 60 * s * s * s,
+    20 * s * s * s,
+    40 * s * s * s
   );
   rect(
-    x * s * t * t + 180 * s * t * t,
-    y * s * t * t - 60 * s * t * t,
-    20 * s * t * t,
-    40 * s * t * t
+    x * s * s * s + 180 * s * s * s,
+    y * s * s * s - 60 * s * s * s,
+    20 * s * s * s,
+    40 * s * s * s
   );
   rect(
-    x * s * t * t + 100 * s * t * t,
-    y * s * t * t,
-    20 * s * t * t,
-    20 * s * t * t
+    x * s * s * s + 100 * s * s * s,
+    y * s * s * s,
+    20 * s * s * s,
+    20 * s * s * s
   );
   rect(
-    x * s * t * t + 140 * s * t * t,
-    y * s * t * t,
-    20 * s * t * t,
-    20 * s * t * t
+    x * s * s * s + 140 * s * s * s,
+    y * s * s * s,
+    20 * s * s * s,
+    20 * s * s * s
   );
   rect(
-    x * s * t * t + 60 * s * t * t,
-    y * s * t * t + 260 * s * t * t,
-    20 * s * t * t,
-    20 * s * t * t
+    x * s * s * s + 60 * s * s * s,
+    y * s * s * s + 260 * s * s * s,
+    20 * s * s * s,
+    20 * s * s * s
   );
   rect(
-    x * s * t * t + 140 * s * t * t,
-    y * s * t * t + 260 * s * t * t,
-    20 * s * t * t,
-    20 * s * t * t
+    x * s * s * s + 140 * s * s * s,
+    y * s * s * s + 260 * s * s * s,
+    20 * s * s * s,
+    20 * s * s * s
   );
   rect(
-    x * s * t * t + 340 * s * t * t,
-    y * s * t * t + 260 * s * t * t,
-    20 * s * t * t,
-    20 * s * t * t
+    x * s * s * s + 340 * s * s * s,
+    y * s * s * s + 260 * s * s * s,
+    20 * s * s * s,
+    20 * s * s * s
   );
   rect(
-    x * s * t * t + 260 * s * t * t,
-    y * s * t * t + 260 * s * t * t,
-    20 * s * t * t,
-    20 * s * t * t
+    x * s * s * s + 260 * s * s * s,
+    y * s * s * s + 260 * s * s * s,
+    20 * s * s * s,
+    20 * s * s * s
   );
 
   //halsband
   fill(250, 50, 50);
   rect(
-    x * s * t * t + 80 * s * t * t,
-    y * s * t * t + 80 * s * t * t,
-    140 * s * t * t,
-    40 * s * t * t
+    x * s * s * s + 80 * s * s * s,
+    y * s * s * s + 80 * s * s * s,
+    140 * s * s * s,
+    40 * s * s * s
   );
 
   pop();
@@ -741,7 +741,7 @@ function draw() {
   }
 }
 
-let state = "game3";
+let state = "start";
 
 function mouseClicked() {
   if (state === "instruction") {

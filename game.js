@@ -269,14 +269,14 @@ class Wolf {
 
 const wolf0 = new Wolf(500, 400); // instruction
 const wolf1 = new Wolf(410, 400); // 2
-const wolf2 = new Wolf(490, 405); // 3
-const wolf3 = new Wolf(210, 400); // 3
+const wolf2 = new Wolf(490, 450); // 3
+const wolf3 = new Wolf(210, 450); // 3
 
 let wolfArray1 = [{ x: 410, y: 400, width: 100, height: 70 }];
 
 let wolfArray2 = [
-  { x: 490, y: 450, width: 100, height: 70 },
-  { x: 210, y: 450, width: 100, height: 70 },
+  { x: 490, y: 450, width: 100, height: 100 },
+  { x: 210, y: 450, width: 100, height: 100 },
 ];
 
 function barn(x, y) {
@@ -482,12 +482,12 @@ function levelScreen() {
   text("back to start", 370, 405, 200, 50);
 }
 function winScreen() {
-  background(0);
+  gameBackground();
   rect(300, 350, 250, 50, 10);
   fill(0);
   textSize(30);
-  text("Next level", 360, 400);
-  fill(255);
+  text("Next level", 360, 390);
+  fill(0);
   textSize(50);
   text("You completed the level", 200, 200);
 }
@@ -497,6 +497,11 @@ function loseScreen() {
   fill(0);
   textSize(50);
   text("YOU LOST", 400, 220);
+  fill(255);
+  rect(300, 350, 250, 50, 10);
+  fill(0);
+  textSize(30);
+  text("Next level", 360, 390);
 }
 
 function gameScreen() {
@@ -846,7 +851,8 @@ function mouseClicked() {
   ) {
     state = "start";
   } else if (
-    state === "result" &&
+    //next level
+    state === "win" &&
     mouseX >= 300 &&
     mouseX <= 550 &&
     mouseY >= 320 &&
@@ -854,7 +860,16 @@ function mouseClicked() {
   ) {
     state = "levels";
   } else if (
-    // bakc to start
+    //next level
+    state === "lose" &&
+    mouseX >= 300 &&
+    mouseX <= 550 &&
+    mouseY >= 320 &&
+    mouseY <= 370
+  ) {
+    state = "levels";
+  } else if (
+    // back to start
     state === "levels" &&
     mouseX >= 250 &&
     mouseX <= 500 &&

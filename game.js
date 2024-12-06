@@ -270,13 +270,13 @@ class Wolf {
 const wolf0 = new Wolf(500, 400); // instruction
 const wolf1 = new Wolf(410, 400); // 2
 const wolf2 = new Wolf(490, 405); // 3
-const wolf3 = new Wolf(180, 400); // 3
+const wolf3 = new Wolf(210, 400); // 3
 
 let wolfArray1 = [{ x: 410, y: 400, width: 100, height: 70 }];
 
 let wolfArray2 = [
-  { x: 490, y: 400, width: 100, height: 70 },
-  { x: 180, y: 400, width: 100, height: 70 },
+  { x: 490, y: 450, width: 100, height: 70 },
+  { x: 210, y: 450, width: 100, height: 70 },
 ];
 
 function barn(x, y) {
@@ -347,25 +347,25 @@ let brick3 = {
 };
 
 let bricks1 = [
-  { x: 510, y: 443, width: 240, height: 20 }, //lvl 1,3
-  { x: 780, y: 405, width: 240, height: 20 }, //lvl 1
+  { x: 500, y: 350, width: 140, height: 20 }, //lvl 1,3
+  { x: 300, y: 400, width: 140, height: 20 }, //lvl 1
 ];
 
 let bricks2 = [
-  { x: 360, y: 405, width: 240, height: 20 }, //lvl 2
+  { x: 200, y: 350, width: 200, height: 20 }, //lvl 2
 ];
 
 let bricks3 = [
-  { x: 510, y: 443, width: 240, height: 20 }, //lvl 1,3
-  { x: 920, y: 445, width: 240, height: 20 }, // lvl 3
+  { x: 300, y: 400, width: 240, height: 20 }, //lvl 1,3
+  { x: 600, y: 400, width: 240, height: 20 }, // lvl 3
 ];
 
 let bricksarray = [
-  { x: 510, y: 443, width: 240, height: 20 }, //lvl 1,3
-  { x: 780, y: 405, width: 240, height: 20 },
-  { x: 360, y: 405, width: 240, height: 20 },
-  { x: 510, y: 443, width: 240, height: 20 }, //lvl 1,3
-  { x: 920, y: 445, width: 240, height: 20 },
+  { x: 500, y: 350, width: 240, height: 20 },
+  { x: 300, y: 400, width: 240, height: 20 },
+  { x: 200, y: 350, width: 200, height: 20 }, //lvl 2
+  { x: 300, y: 400, width: 240, height: 20 }, // lvl 3
+  { x: 600, y: 400, width: 240, height: 20 }, // lvl 3
 ];
 
 function cloud(x, y) {
@@ -407,7 +407,7 @@ function startScreen() {
   textSize(50);
   text("HERD HERO", 270, 100, 400, 100);
   brick(brick0);
-  dog(300, 350);
+  dog(270, 450);
   barn(90, 250);
 
   sheep4.draw();
@@ -481,12 +481,28 @@ function levelScreen() {
   text("3", 420, 340, 50, 50);
   text("back to start", 370, 405, 200, 50);
 }
+function winScreen() {
+  background(0);
+  rect(300, 350, 250, 50, 10);
+  fill(0);
+  textSize(30);
+  text("Next level", 360, 400);
+  fill(255);
+  textSize(50);
+  text("You completed the level", 200, 200);
+}
+
+function loseScreen() {
+  gameBackground();
+  fill(0);
+  textSize(50);
+  text("YOU LOST", 400, 220);
+}
 
 function gameScreen() {
-  //background(190, 190, 255);
   gameBackground();
   barn(100, 250);
-  dog(dogX, y - 150);
+  dog(dogX, y);
   //code for gravity from Chat GPT
   if (dogX < 1000) {
     // as long as character is not there yet
@@ -510,12 +526,15 @@ function gameScreen() {
     }
   } else {
     //call result screen when done
-    state = "result";
+    state = "win";
   }
 
-  if (y < 500) {
+  if (dogY < 500) {
     velocityY = 0;
   }
+
+  brick(brick1);
+  brick(brick2);
 
   for (let brick of bricks1) {
     if (
@@ -528,18 +547,11 @@ function gameScreen() {
       y = brick.y - 50;
     }
   }
-
-  brick(brick1);
-  brick(brick2);
-  barn(2000, 1000);
   sheep1.draw();
   sheep2.draw();
-
   for (let sheep of sheepslvl1) {
-    // this is not detected by the dog
-    if (dist(dogX, y, sheep.x, sheep.y) < 100) {
-      //console.log(dist(dogX, dogY, sheep.x, sheep.y));
-      //console.log(sheep.x);
+    //this is not detected by the dog
+    if (dist(dogX, y, sheep.x, sheep.y) < 50 + 50) {
       console.log("collision");
     }
   }
@@ -548,7 +560,7 @@ function gameScreen() {
 function gameScreen2() {
   gameBackground();
   barn(100, 250);
-  dog(dogX, y - 150);
+  dog(dogX, y);
   //code for gravity from Chat GPT
   if (dogX < 1000) {
     // as long as character is not there yet
@@ -572,7 +584,7 @@ function gameScreen2() {
     }
   } else {
     //call result screen when done
-    state = "result";
+    state = "win";
   }
 
   if (dogY < 500) {
@@ -580,8 +592,6 @@ function gameScreen2() {
   }
 
   brick(brick3);
-
-  //console.log(bricks[(3)]);
 
   for (let brick of bricks2) {
     if (
@@ -593,12 +603,10 @@ function gameScreen2() {
       velocityY = 0;
       y = brick.y - 50;
     }
-
-    sheep3.draw();
-    sheep5.draw();
-    wolf1.draw();
   }
-
+  sheep3.draw();
+  sheep5.draw();
+  wolf1.draw();
   for (let sheep of sheepslvl2) {
     //this is not detected by the dog
     if (dist(dogX, y, sheep.x, sheep.y) < 50 + 50) {
@@ -609,35 +617,17 @@ function gameScreen2() {
   for (let wolf of wolfArray1) {
     // this is detected by the dog
     if (dist(dogX, y, wolf.x, wolf.y) < 50 + 50) {
-      console.log("1");
+      gamesState = false;
+      state = "lose";
     }
   }
 }
 
 function gameScreen3() {
   gameBackground();
-  brick(brick0);
-  brick(brick1);
   barn(100, 250);
-
-  sheep6.draw();
-  sheep7.draw();
-
-  wolf2.draw();
-  wolf3.draw();
-  for (let brick of bricks3) {
-    if (
-      dogX + 50 > brick.x &&
-      dogX < brick.x + brick.width &&
-      y + 50 > brick.y &&
-      y + 50 <= brick.y + brick.height
-    ) {
-      velocityY = 0;
-      y = brick.y - 50;
-    }
-  }
-
-  dog(dogX, y - 150); //code for gravity from Chat GPT
+  dog(dogX, y);
+  //code for gravity from Chat GPT
   if (dogX < 1000) {
     // as long as character is not there yet
 
@@ -660,24 +650,44 @@ function gameScreen3() {
     }
   } else {
     //call result screen when done
-    state = "result";
+    state = "win";
   }
 
-  if (y < 500) {
+  if (dogY < 500) {
     velocityY = 0;
   }
 
+  brick(brick1);
+  brick(brick0);
+
+  for (let brick of bricks3) {
+    if (
+      dogX + 50 > brick.x &&
+      dogX < brick.x + brick.width &&
+      y + 50 > brick.y &&
+      y + 50 <= brick.y + brick.height
+    ) {
+      velocityY = 0;
+      y = brick.y - 50;
+    }
+  }
+  sheep6.draw();
+  sheep7.draw();
+  wolf2.draw();
+  wolf3.draw();
+
   for (let sheep of sheepslvl3) {
-    // this is not detected by the dog
-    if (dist(dogX, y, sheep.x, sheep.y) < 100) {
+    //this is not detected by the dog
+    if (dist(dogX, y, sheep.x, sheep.y) < 50 + 50) {
       console.log("collision");
     }
   }
 
   for (let wolf of wolfArray2) {
     // this is detected by the dog
-    if (dist(dogX, y, wolf.x, wolf.y) < 100) {
-      console.log("1");
+    if (dist(dogX, y, wolf.x, wolf.y) < 50 + 50) {
+      gamesState = false;
+      state = "lose";
     }
   }
 }
@@ -712,17 +722,21 @@ function keyPressed() {
 function resultScreen() {
   gameBackground();
   rect(300, 365, 250, 50, 10);
-
-  if (dogX <= 900 && y <= 500) {
-    rect(300, 350, 250, 50, 10);
-    fill(0);
-    textSize(30);
-    text("Next level", 360, 400);
-    fill(0);
-    textSize(50);
-    text("You completed the level", 200, 200);
-  } else {
-    background(0);
+  for (let wolf of wolfArray1) {
+    if (dist(dogX, y, wolf.x, wolf.y) < 100) {
+      background(0);
+      rect(300, 350, 250, 50, 10);
+      fill(0);
+      textSize(30);
+      text("Next level", 360, 400);
+      fill(255);
+      textSize(50);
+      text("You completed the level", 200, 200);
+    } else {
+      fill(255);
+      textSize(39);
+      text("you lost", 100, 100);
+    }
   }
 }
 
@@ -744,6 +758,12 @@ function draw() {
     gameScreen3();
   } else if (state === "levels") {
     levelScreen();
+  } else if (state === "win") {
+    winScreen();
+    resetlvl();
+  } else if (state === "lose") {
+    loseScreen();
+    resetlvl();
   }
 }
 
@@ -846,9 +866,12 @@ function mouseClicked() {
     state = "start";
   } else if (state === "game3") {
     state = "start";
-  } else if (state === "result") {
+  } else if (state === "win") {
     resetlvl();
-    state = "start";
+    state = "levels";
+  } else if (state === "lose") {
+    resetlvl();
+    state = "levels";
   }
 }
 

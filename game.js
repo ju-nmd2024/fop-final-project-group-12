@@ -460,6 +460,10 @@ function instructionScreen() {
   line(460, 327, 490, 327);
   line(490, 327, 475, 340);
   line(490, 327, 475, 315);
+  // other right
+  line(670, 245, 640, 245);
+  line(670, 245, 655, 230);
+  line(670, 245, 655, 260);
   pop();
 
   barn(10, 30);
@@ -496,7 +500,7 @@ function loseScreen() {
   gameBackground();
   fill(0);
   textSize(50);
-  text("YOU LOST", 400, 220);
+  text("YOU LOST", 300, 220);
   fill(255);
   rect(300, 350, 250, 50, 10);
   fill(0);
@@ -772,7 +776,7 @@ function draw() {
   }
 }
 
-let state = "start";
+let state = "instruction";
 
 function mouseClicked() {
   if (state === "instruction") {

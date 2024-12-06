@@ -14,6 +14,7 @@ let jumpheight = 2;
 let velocityY = 0.5;
 let dogY = 500;
 let dogX = x;
+let score = 0;
 
 function setup() {
   createCanvas(900, 600);
@@ -82,6 +83,7 @@ class Sheep {
     this.x = x;
     this.y = y;
   }
+
   draw() {
     let x = this.x;
     let y = this.y;
@@ -157,16 +159,16 @@ const sheep6 = new Sheep(300, 335); // lvl 3
 const sheep7 = new Sheep(600, 335); // lvl 3
 
 let sheepslvl1 = [
-  { x: 640, y: 440, width: 100, height: 100 },
-  { x: 320, y: 335, width: 100, height: 100 },
+  { x: 640, y: 440, width: 100, height: 100, collected: false },
+  { x: 320, y: 335, width: 100, height: 100, collected: false },
 ];
 let sheepslvl2 = [
-  { x: 210, y: 290, width: 100, height: 100 },
-  { x: 610, y: 440, width: 100, height: 100 },
+  { x: 210, y: 290, width: 100, height: 100, collected: false },
+  { x: 610, y: 440, width: 100, height: 100, collected: false },
 ];
 let sheepslvl3 = [
-  { x: 300, y: 335, width: 100, height: 100 },
-  { x: 600, y: 335, width: 100, height: 100 },
+  { x: 300, y: 335, width: 100, height: 100, collected: false },
+  { x: 600, y: 335, width: 100, height: 100, collected: false },
 ];
 
 class Wolf {
@@ -561,7 +563,7 @@ function gameScreen() {
   for (let sheep of sheepslvl1) {
     //this is not detected by the dog
     if (dist(dogX, y, sheep.x, sheep.y) < 50 + 50) {
-      console.log("collision");
+      sheep.collected = true;
     }
   }
 }

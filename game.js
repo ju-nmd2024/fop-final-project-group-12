@@ -87,64 +87,61 @@ class Sheep {
   draw() {
     let x = this.x;
     let y = this.y;
+
     fill(190);
-    ellipse(this.x, this.y, 100, 80);
-    /*
-fill(190);
-rect(x + 220 * c, y + 180 * c, 40 * c, 40 * c);
+    rect(x + 220 * c * 0.3, y + 180 * c * 0.3, 40 * c * 0.3, 40 * c * 0.3);
 
-//body
-fill(220, 220, 220);
-rect(x, y + 40 * c, 160 * c, 80 * c);
-rect(x + 20 * c, y + 120 * c, 120 * c, 20 * c);
+    //body
+    fill(220, 220, 220);
+    rect(x, y + 40 * c * 0.3, 160 * c * 0.3, 80 * c * 0.3);
+    rect(x + 20 * c * 0.3, y + 120 * c * 0.3, 120 * c * 0.3, 20 * c * 0.3);
 
-//feet
-rect(x + 80 * c, y + 180 * c, 40 * c, 40 * c);
-rect(x + 140 * c, y + 180 * c, 40 * c, 40 * c);
-rect(x + 240 * c, y + 180 * c, 40 * c, 40 * c);
+    //feet
+    rect(x + 80 * c * 0.3, y + 180 * c * 0.3, 40 * c * 0.3, 40 * c * 0.3);
+    rect(x + 140 * c * 0.3, y + 180 * c * 0.3, 40 * c * 0.3, 40 * c * 0.3);
+    rect(x + 240 * c * 0.3, y + 180 * c * 0.3, 40 * c * 0.3, 40 * c * 0.3);
 
-//wool
-fill(169, 169, 169);
-rect(x, y, 180 * c, 40 * c);
-rect(x + 140 * c, y - 20 * c, 120 * c, 20 * c);
-rect(x + 180 * c, y, 120 * c, 40 * c);
-rect(x + 160 * c, y + 40 * c, 220 * c, 40 * c);
-rect(x + 160 * c, y + 80 * c, 180 * c, 40 * c);
-rect(x + 140 * c, y + 120 * c, 160 * c, 20 * c);
-rect(x + 80 * c, y + 140 * c, 200 * c, 20 * c);
+    //wool
+    fill(169, 169, 169);
+    rect(x, y, 180 * c * 0.3, 40 * c * 0.3);
+    rect(x + 140 * c * 0.3, y - 20 * c * 0.3, 120 * c * 0.3, 20 * c * 0.3);
+    rect(x + 180 * c * 0.3, y, 120 * c * 0.3, 40 * c * 0.3);
+    rect(x + 160 * c * 0.3, y + 40 * c * 0.3, 220 * c * 0.3, 40 * c * 0.3);
+    rect(x + 160 * c * 0.3, y + 80 * c * 0.3, 180 * c * 0.3, 40 * c * 0.3);
+    rect(x + 140 * c * 0.3, y + 120 * c * 0.3, 160 * c * 0.3, 20 * c * 0.3);
+    rect(x + 80 * c * 0.3, y + 140 * c * 0.3, 200 * c * 0.3, 20 * c * 0.3);
 
-//wool outline
-fill(105, 105, 105);
-rect(x, y, 60 * c, 20 * c);
-rect(x + 40 * c, y + 20 * c, 20 * c, 20 * c);
-rect(x - 20 * c, y + 20 * c, 20 * c, 20 * c);
-rect(x, y + 40 * c, 20, 20 * c);
-rect(x + 60 * c, y - 20 * c, 80 * c, 20 * c);
-rect(x + 120 * c, y, 20, 40 * c);
-rect(x + 140 * c, y, 40 * c, 20 * c);
-rect(x + 180 * c, y + 20 * c, 20 * c, 20 * c);
-rect(x + 140 * c, y + 40 * c, 40 * c, 20 * c);
-rect(x + 140 * c, y - 40 * c, 140 * c, 20 * c);
-rect(x + 260 * c, y - 20 * c, 60 * c, 20 * c);
-rect(x + 300 * c, y, 20 * c, 40 * c);
-rect(x + 320 * c, y + 20 * c, 40 * c, 20 * c);
-rect(x + 360 * c, y + 40 * c, 20 * c, 40 * c);
-rect(x + 340 * c, y + 80 * c, 40 * c, 20 * c);
-rect(x + 320 * c, y + 20 * c, 20 * c, 100 * c);
-rect(x + 300 * c, y + 120 * c, 40 * c, 20 * c);
-rect(x + 280 * c, y + 140 * c, 40 * c, 20 * c);
-rect(x + 60 * c, y + 160 * c, 240 * c, 20 * c);
-rect(x + 60 * c, y + 140 * c, 20 * c, 20 * c);
+    //wool outline
+    fill(105, 105, 105);
+    rect(x, y, 60 * c * 0.3, 20 * c * 0.3);
+    rect(x + 40 * c * 0.3, y + 20 * c * 0.3, 20 * c * 0.3, 20 * c * 0.3);
+    rect(x - 20 * c * 0.3, y + 20 * c * 0.3, 20 * c * 0.3, 20 * c * 0.3);
+    rect(x, y + 40 * c * 0.3, 20 * 0.3, 20 * c * 0.3);
+    rect(x + 60 * c * 0.3, y - 20 * c * 0.3, 80 * c * 0.3, 20 * c * 0.3);
+    rect(x + 120 * c * 0.3, y, 20 * 0.3, 40 * c * 0.3);
+    rect(x + 140 * c * 0.3, y, 40 * c * 0.3, 20 * c * 0.3);
+    rect(x + 180 * c * 0.3, y + 20 * c * 0.3, 20 * c * 0.3, 20 * c * 0.3);
+    rect(x + 140 * c * 0.3, y + 40 * c * 0.3, 40 * c * 0.3, 20 * c * 0.3);
+    rect(x + 140 * c * 0.3, y - 40 * c * 0.3, 140 * c * 0.3, 20 * c * 0.3);
+    rect(x + 260 * c * 0.3, y - 20 * c * 0.3, 60 * c * 0.3, 20 * c * 0.3);
+    rect(x + 300 * c * 0.3, y, 20 * c * 0.3, 40 * c * 0.3);
+    rect(x + 320 * c * 0.3, y + 20 * c * 0.3, 40 * c * 0.3, 20 * c * 0.3);
+    rect(x + 360 * c * 0.3, y + 40 * c * 0.3, 20 * c * 0.3, 40 * c * 0.3);
+    rect(x + 340 * c * 0.3, y + 80 * c * 0.3, 40 * c * 0.3, 20 * c * 0.3);
+    rect(x + 320 * c * 0.3, y + 20 * c * 0.3, 20 * c * 0.3, 100 * c * 0.3);
+    rect(x + 300 * c * 0.3, y + 120 * c * 0.3, 40 * c * 0.3, 20 * c * 0.3);
+    rect(x + 280 * c * 0.3, y + 140 * c * 0.3, 40 * c * 0.3, 20 * c * 0.3);
+    rect(x + 60 * c * 0.3, y + 160 * c * 0.3, 240 * c * 0.3, 20 * c * 0.3);
+    rect(x + 60 * c * 0.3, y + 140 * c * 0.3, 20 * c * 0.3, 20 * c * 0.3);
 
-//eyes
-fill(0);
-rect(x + 20 * c, y + 60 * c, 20 * c, 20 * c);
-rect(x + 100 * c, y + 60 * c, 20 * c, 20 * c);
-//nose
-fill(255, 210, 230);
-rect(x + 40 * c, y + 80 * c, 60 * c, 20 * c);
-rect(x + 60 * c, y + 100 * c, 20 * c, 20 * c);
-*/
+    //eyes
+    fill(0);
+    rect(x + 20 * c * 0.3, y + 60 * c * 0.3, 20 * c * 0.3, 20 * c * 0.3);
+    rect(x + 100 * c * 0.3, y + 60 * c * 0.3, 20 * c * 0.3, 20 * c * 0.3);
+    //nose
+    fill(255, 210, 230);
+    rect(x + 40 * c * 0.3, y + 80 * c * 0.3, 60 * c * 0.3, 20 * c * 0.3);
+    rect(x + 60 * c * 0.3, y + 100 * c * 0.3, 20 * c * 0.3, 20 * c * 0.3);
   }
 }
 
@@ -564,6 +561,7 @@ function gameScreen() {
     //this is not detected by the dog
     if (dist(dogX, y, sheep.x, sheep.y) < 50 + 50) {
       sheep.collected = true;
+      console.log("lol");
     }
   }
 }
@@ -778,7 +776,7 @@ function draw() {
   }
 }
 
-let state = "instruction";
+let state = "start";
 
 function mouseClicked() {
   if (state === "instruction") {

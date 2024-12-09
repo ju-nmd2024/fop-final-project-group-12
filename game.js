@@ -564,6 +564,7 @@ function gameScreen() {
   //sheep1.draw();
   //sheep2.draw();
 
+  //chat gpt, make sheep dissapear when collected
   sheepslvl1.forEach((sheep, index) => {
     if (!sheep.collected) {
       fill(190);
@@ -829,6 +830,7 @@ function gameScreen2() {
   //sheep5.draw();
   wolf1.draw();
 
+  //chat gpt, make sheep dissapear when collected
   sheepslvl2.forEach((sheep, index) => {
     if (!sheep.collected) {
       fill(190);
@@ -1104,6 +1106,7 @@ function gameScreen3() {
   wolf2.draw();
   wolf3.draw();
 
+  //chat gpt, make sheep dissapear when collected
   sheepslvl3.forEach((sheep, index) => {
     if (!sheep.collected) {
       fill(190);
@@ -1521,3 +1524,4 @@ function mouseClicked() {
 
 // jumping functions https://editor.p5js.org/tnishida/sketches/Wv_-BBBaA
 // gravity chatgpt https://chatgpt.com/share/6751ba57-6c54-8001-becb-779bb58e3210
+// make the sheep dissapear https://chatgpt.com/share/6756d2d7-dd94-8001-966b-7c651c1ae346

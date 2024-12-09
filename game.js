@@ -1418,10 +1418,9 @@ function mouseClicked() {
     mouseY <= 320
   ) {
     state = "levels";
-  } else if (state === "game") {
-    state = "start";
-    //startscreen
-  } else if (
+  }
+  //startscreen
+  else if (
     //start button
     state === "start" &&
     mouseX >= 250 &&
@@ -1508,10 +1507,6 @@ function mouseClicked() {
     mouseY >= 390 &&
     mouseY <= 440
   ) {
-    state = "start";
-  } else if (state === "game2") {
-    state = "start";
-  } else if (state === "game3") {
     state = "start";
   } else if (state === "win") {
     resetlvl();

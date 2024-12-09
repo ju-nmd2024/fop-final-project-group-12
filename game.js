@@ -1401,7 +1401,7 @@ function draw() {
   }
 }
 
-let state = "game3";
+let state = "start";
 
 function mouseClicked() {
   if (state === "instruction") {

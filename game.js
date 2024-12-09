@@ -145,27 +145,27 @@ class Sheep {
   }
 }
 
-const sheep0 = new Sheep(550, 230); // instructiona
-const sheep4 = new Sheep(625, 335); // start
-const sheep1 = new Sheep(640, 440); //lvl1
-const sheep2 = new Sheep(320, 335); //lvl 1
-const sheep3 = new Sheep(610, 440); //lvl 2
-const sheep5 = new Sheep(210, 290); //lvl 2
+const sheep0 = new Sheep(500, 220); // instructiona
+const sheep4 = new Sheep(605, 335); // start
+const sheep1 = new Sheep(600, 440); //lvl1
+const sheep2 = new Sheep(270, 335); //lvl 1
+const sheep3 = new Sheep(560, 440); //lvl 2
+const sheep5 = new Sheep(160, 290); //lvl 2
 
 const sheep6 = new Sheep(300, 335); // lvl 3
 const sheep7 = new Sheep(600, 335); // lvl 3
 
 let sheepslvl1 = [
-  { x: 640, y: 440, width: 100, height: 100, collected: false },
-  { x: 320, y: 335, width: 100, height: 100, collected: false },
+  { x: 640, y: 440, width: 100, height: 60, collected: false },
+  { x: 320, y: 335, width: 100, height: 60, collected: false },
 ];
 let sheepslvl2 = [
-  { x: 210, y: 290, width: 100, height: 100, collected: false },
-  { x: 610, y: 440, width: 100, height: 100, collected: false },
+  { x: 210, y: 285, width: 100, height: 60, collected: false },
+  { x: 610, y: 440, width: 100, height: 60, collected: false },
 ];
 let sheepslvl3 = [
-  { x: 300, y: 335, width: 100, height: 100, collected: false },
-  { x: 600, y: 335, width: 100, height: 100, collected: false },
+  { x: 300, y: 335, width: 100, height: 60, collected: false },
+  { x: 600, y: 335, width: 100, height: 60, collected: false },
 ];
 
 class Wolf {
@@ -263,16 +263,16 @@ class Wolf {
   }
 }
 
-const wolf0 = new Wolf(500, 400); // instruction
-const wolf1 = new Wolf(410, 400); // 2
-const wolf2 = new Wolf(490, 450); // 3
-const wolf3 = new Wolf(210, 450); // 3
+const wolf0 = new Wolf(400, 420); // instruction
+const wolf1 = new Wolf(360, 420); // 2
+const wolf2 = new Wolf(490, 420); // 3
+const wolf3 = new Wolf(160, 420); // 3
 
-let wolfArray1 = [{ x: 410, y: 400, width: 100, height: 70 }];
+let wolfArray1 = [{ x: 410, y: 420, width: 100, height: 70 }];
 
 let wolfArray2 = [
-  { x: 490, y: 450, width: 100, height: 100 },
-  { x: 210, y: 450, width: 100, height: 100 },
+  { x: 560, y: 420, width: 100, height: 100 },
+  { x: 210, y: 420, width: 100, height: 100 },
 ];
 
 function barn(x, y) {
@@ -390,10 +390,19 @@ function gameBackground() {
   cloud();
 }
 
-function resetlvl() {
+function resetlvl(level) {
   dogY = 500;
   dogX = 100;
   gamesState = true;
+  for (let sheep of sheepslvl1) {
+    sheep.collected = false;
+  }
+  for (let sheep of sheepslvl2) {
+    sheep.collected = false;
+  }
+  for (let sheep of sheepslvl3) {
+    sheep.collected = false;
+  }
 }
 
 function startScreen() {
@@ -552,13 +561,219 @@ function gameScreen() {
       y = brick.y - 50;
     }
   }
-  sheep1.draw();
-  sheep2.draw();
+  //sheep1.draw();
+  //sheep2.draw();
+
+  sheepslvl1.forEach((sheep, index) => {
+    if (!sheep.collected) {
+      fill(190);
+      rect(
+        sheep.x + 220 * c * 0.3,
+        sheep.y + 180 * c * 0.3,
+        40 * c * 0.3,
+        40 * c * 0.3
+      );
+
+      //body
+      fill(220, 220, 220);
+      rect(sheep.x, sheep.y + 40 * c * 0.3, 160 * c * 0.3, 80 * c * 0.3);
+      rect(
+        sheep.x + 20 * c * 0.3,
+        sheep.y + 120 * c * 0.3,
+        120 * c * 0.3,
+        20 * c * 0.3
+      );
+
+      //feet
+      rect(
+        sheep.x + 80 * c * 0.3,
+        sheep.y + 180 * c * 0.3,
+        40 * c * 0.3,
+        40 * c * 0.3
+      );
+      rect(
+        sheep.x + 140 * c * 0.3,
+        sheep.y + 180 * c * 0.3,
+        40 * c * 0.3,
+        40 * c * 0.3
+      );
+      rect(
+        sheep.x + 240 * c * 0.3,
+        sheep.y + 180 * c * 0.3,
+        40 * c * 0.3,
+        40 * c * 0.3
+      );
+
+      //wool
+      fill(169, 169, 169);
+      rect(sheep.x, sheep.y, 180 * c * 0.3, 40 * c * 0.3);
+      rect(
+        sheep.x + 140 * c * 0.3,
+        sheep.y - 20 * c * 0.3,
+        120 * c * 0.3,
+        20 * c * 0.3
+      );
+      rect(sheep.x + 180 * c * 0.3, sheep.y, 120 * c * 0.3, 40 * c * 0.3);
+      rect(
+        sheep.x + 160 * c * 0.3,
+        sheep.y + 40 * c * 0.3,
+        220 * c * 0.3,
+        40 * c * 0.3
+      );
+      rect(
+        sheep.x + 160 * c * 0.3,
+        sheep.y + 80 * c * 0.3,
+        180 * c * 0.3,
+        40 * c * 0.3
+      );
+      rect(
+        sheep.x + 140 * c * 0.3,
+        sheep.y + 120 * c * 0.3,
+        160 * c * 0.3,
+        20 * c * 0.3
+      );
+      rect(
+        sheep.x + 80 * c * 0.3,
+        sheep.y + 140 * c * 0.3,
+        200 * c * 0.3,
+        20 * c * 0.3
+      );
+
+      //wool outline
+      fill(105, 105, 105);
+      rect(sheep.x, sheep.y, 60 * c * 0.3, 20 * c * 0.3);
+      rect(
+        sheep.x + 40 * c * 0.3,
+        sheep.y + 20 * c * 0.3,
+        20 * c * 0.3,
+        20 * c * 0.3
+      );
+      rect(
+        sheep.x - 20 * c * 0.3,
+        sheep.y + 20 * c * 0.3,
+        20 * c * 0.3,
+        20 * c * 0.3
+      );
+      rect(sheep.x, sheep.y + 40 * c * 0.3, 20 * 0.3, 20 * c * 0.3);
+      rect(
+        sheep.x + 60 * c * 0.3,
+        sheep.y - 20 * c * 0.3,
+        80 * c * 0.3,
+        20 * c * 0.3
+      );
+      rect(sheep.x + 120 * c * 0.3, sheep.y, 20 * 0.3, 40 * c * 0.3);
+      rect(sheep.x + 140 * c * 0.3, sheep.y, 40 * c * 0.3, 20 * c * 0.3);
+      rect(
+        sheep.x + 180 * c * 0.3,
+        sheep.y + 20 * c * 0.3,
+        20 * c * 0.3,
+        20 * c * 0.3
+      );
+      rect(
+        sheep.x + 140 * c * 0.3,
+        sheep.y + 40 * c * 0.3,
+        40 * c * 0.3,
+        20 * c * 0.3
+      );
+      rect(
+        sheep.x + 140 * c * 0.3,
+        sheep.y - 40 * c * 0.3,
+        140 * c * 0.3,
+        20 * c * 0.3
+      );
+      rect(
+        sheep.x + 260 * c * 0.3,
+        sheep.y - 20 * c * 0.3,
+        60 * c * 0.3,
+        20 * c * 0.3
+      );
+      rect(sheep.x + 300 * c * 0.3, sheep.y, 20 * c * 0.3, 40 * c * 0.3);
+      rect(
+        sheep.x + 320 * c * 0.3,
+        sheep.y + 20 * c * 0.3,
+        40 * c * 0.3,
+        20 * c * 0.3
+      );
+      rect(
+        sheep.x + 360 * c * 0.3,
+        sheep.y + 40 * c * 0.3,
+        20 * c * 0.3,
+        40 * c * 0.3
+      );
+      rect(
+        sheep.x + 340 * c * 0.3,
+        sheep.y + 80 * c * 0.3,
+        40 * c * 0.3,
+        20 * c * 0.3
+      );
+      rect(
+        sheep.x + 320 * c * 0.3,
+        sheep.y + 20 * c * 0.3,
+        20 * c * 0.3,
+        100 * c * 0.3
+      );
+      rect(
+        sheep.x + 300 * c * 0.3,
+        sheep.y + 120 * c * 0.3,
+        40 * c * 0.3,
+        20 * c * 0.3
+      );
+      rect(
+        sheep.x + 280 * c * 0.3,
+        sheep.y + 140 * c * 0.3,
+        40 * c * 0.3,
+        20 * c * 0.3
+      );
+      rect(
+        sheep.x + 60 * c * 0.3,
+        sheep.y + 160 * c * 0.3,
+        240 * c * 0.3,
+        20 * c * 0.3
+      );
+      rect(
+        sheep.x + 60 * c * 0.3,
+        sheep.y + 140 * c * 0.3,
+        20 * c * 0.3,
+        20 * c * 0.3
+      );
+
+      //eyes
+      fill(0);
+      rect(
+        sheep.x + 20 * c * 0.3,
+        sheep.y + 60 * c * 0.3,
+        20 * c * 0.3,
+        20 * c * 0.3
+      );
+      rect(
+        sheep.x + 100 * c * 0.3,
+        sheep.y + 60 * c * 0.3,
+        20 * c * 0.3,
+        20 * c * 0.3
+      );
+      //nose
+      fill(255, 210, 230);
+      rect(
+        sheep.x + 40 * c * 0.3,
+        sheep.y + 80 * c * 0.3,
+        60 * c * 0.3,
+        20 * c * 0.3
+      );
+      rect(
+        sheep.x + 60 * c * 0.3,
+        sheep.y + 100 * c * 0.3,
+        20 * c * 0.3,
+        20 * c * 0.3
+      );
+    }
+  });
+
   for (let sheep of sheepslvl1) {
     //this is not detected by the dog
     if (dist(dogX, y, sheep.x, sheep.y) < 50 + 50) {
       sheep.collected = true;
-      console.log("lol");
+      score++;
+      console.log("sheep collected" + score);
     }
   }
 }
@@ -610,13 +825,220 @@ function gameScreen2() {
       y = brick.y - 50;
     }
   }
-  sheep3.draw();
-  sheep5.draw();
+  // sheep3.draw();
+  //sheep5.draw();
   wolf1.draw();
+
+  sheepslvl2.forEach((sheep, index) => {
+    if (!sheep.collected) {
+      fill(190);
+      rect(
+        sheep.x + 220 * c * 0.3,
+        sheep.y + 180 * c * 0.3,
+        40 * c * 0.3,
+        40 * c * 0.3
+      );
+
+      //body
+      fill(220, 220, 220);
+      rect(sheep.x, sheep.y + 40 * c * 0.3, 160 * c * 0.3, 80 * c * 0.3);
+      rect(
+        sheep.x + 20 * c * 0.3,
+        sheep.y + 120 * c * 0.3,
+        120 * c * 0.3,
+        20 * c * 0.3
+      );
+
+      //feet
+      rect(
+        sheep.x + 80 * c * 0.3,
+        sheep.y + 180 * c * 0.3,
+        40 * c * 0.3,
+        40 * c * 0.3
+      );
+      rect(
+        sheep.x + 140 * c * 0.3,
+        sheep.y + 180 * c * 0.3,
+        40 * c * 0.3,
+        40 * c * 0.3
+      );
+      rect(
+        sheep.x + 240 * c * 0.3,
+        sheep.y + 180 * c * 0.3,
+        40 * c * 0.3,
+        40 * c * 0.3
+      );
+
+      //wool
+      fill(169, 169, 169);
+      rect(sheep.x, sheep.y, 180 * c * 0.3, 40 * c * 0.3);
+      rect(
+        sheep.x + 140 * c * 0.3,
+        sheep.y - 20 * c * 0.3,
+        120 * c * 0.3,
+        20 * c * 0.3
+      );
+      rect(sheep.x + 180 * c * 0.3, sheep.y, 120 * c * 0.3, 40 * c * 0.3);
+      rect(
+        sheep.x + 160 * c * 0.3,
+        sheep.y + 40 * c * 0.3,
+        220 * c * 0.3,
+        40 * c * 0.3
+      );
+      rect(
+        sheep.x + 160 * c * 0.3,
+        sheep.y + 80 * c * 0.3,
+        180 * c * 0.3,
+        40 * c * 0.3
+      );
+      rect(
+        sheep.x + 140 * c * 0.3,
+        sheep.y + 120 * c * 0.3,
+        160 * c * 0.3,
+        20 * c * 0.3
+      );
+      rect(
+        sheep.x + 80 * c * 0.3,
+        sheep.y + 140 * c * 0.3,
+        200 * c * 0.3,
+        20 * c * 0.3
+      );
+
+      //wool outline
+      fill(105, 105, 105);
+      rect(sheep.x, sheep.y, 60 * c * 0.3, 20 * c * 0.3);
+      rect(
+        sheep.x + 40 * c * 0.3,
+        sheep.y + 20 * c * 0.3,
+        20 * c * 0.3,
+        20 * c * 0.3
+      );
+      rect(
+        sheep.x - 20 * c * 0.3,
+        sheep.y + 20 * c * 0.3,
+        20 * c * 0.3,
+        20 * c * 0.3
+      );
+      rect(sheep.x, sheep.y + 40 * c * 0.3, 20 * 0.3, 20 * c * 0.3);
+      rect(
+        sheep.x + 60 * c * 0.3,
+        sheep.y - 20 * c * 0.3,
+        80 * c * 0.3,
+        20 * c * 0.3
+      );
+      rect(sheep.x + 120 * c * 0.3, sheep.y, 20 * 0.3, 40 * c * 0.3);
+      rect(sheep.x + 140 * c * 0.3, sheep.y, 40 * c * 0.3, 20 * c * 0.3);
+      rect(
+        sheep.x + 180 * c * 0.3,
+        sheep.y + 20 * c * 0.3,
+        20 * c * 0.3,
+        20 * c * 0.3
+      );
+      rect(
+        sheep.x + 140 * c * 0.3,
+        sheep.y + 40 * c * 0.3,
+        40 * c * 0.3,
+        20 * c * 0.3
+      );
+      rect(
+        sheep.x + 140 * c * 0.3,
+        sheep.y - 40 * c * 0.3,
+        140 * c * 0.3,
+        20 * c * 0.3
+      );
+      rect(
+        sheep.x + 260 * c * 0.3,
+        sheep.y - 20 * c * 0.3,
+        60 * c * 0.3,
+        20 * c * 0.3
+      );
+      rect(sheep.x + 300 * c * 0.3, sheep.y, 20 * c * 0.3, 40 * c * 0.3);
+      rect(
+        sheep.x + 320 * c * 0.3,
+        sheep.y + 20 * c * 0.3,
+        40 * c * 0.3,
+        20 * c * 0.3
+      );
+      rect(
+        sheep.x + 360 * c * 0.3,
+        sheep.y + 40 * c * 0.3,
+        20 * c * 0.3,
+        40 * c * 0.3
+      );
+      rect(
+        sheep.x + 340 * c * 0.3,
+        sheep.y + 80 * c * 0.3,
+        40 * c * 0.3,
+        20 * c * 0.3
+      );
+      rect(
+        sheep.x + 320 * c * 0.3,
+        sheep.y + 20 * c * 0.3,
+        20 * c * 0.3,
+        100 * c * 0.3
+      );
+      rect(
+        sheep.x + 300 * c * 0.3,
+        sheep.y + 120 * c * 0.3,
+        40 * c * 0.3,
+        20 * c * 0.3
+      );
+      rect(
+        sheep.x + 280 * c * 0.3,
+        sheep.y + 140 * c * 0.3,
+        40 * c * 0.3,
+        20 * c * 0.3
+      );
+      rect(
+        sheep.x + 60 * c * 0.3,
+        sheep.y + 160 * c * 0.3,
+        240 * c * 0.3,
+        20 * c * 0.3
+      );
+      rect(
+        sheep.x + 60 * c * 0.3,
+        sheep.y + 140 * c * 0.3,
+        20 * c * 0.3,
+        20 * c * 0.3
+      );
+
+      //eyes
+      fill(0);
+      rect(
+        sheep.x + 20 * c * 0.3,
+        sheep.y + 60 * c * 0.3,
+        20 * c * 0.3,
+        20 * c * 0.3
+      );
+      rect(
+        sheep.x + 100 * c * 0.3,
+        sheep.y + 60 * c * 0.3,
+        20 * c * 0.3,
+        20 * c * 0.3
+      );
+      //nose
+      fill(255, 210, 230);
+      rect(
+        sheep.x + 40 * c * 0.3,
+        sheep.y + 80 * c * 0.3,
+        60 * c * 0.3,
+        20 * c * 0.3
+      );
+      rect(
+        sheep.x + 60 * c * 0.3,
+        sheep.y + 100 * c * 0.3,
+        20 * c * 0.3,
+        20 * c * 0.3
+      );
+    }
+  });
+
   for (let sheep of sheepslvl2) {
     //this is not detected by the dog
     if (dist(dogX, y, sheep.x, sheep.y) < 50 + 50) {
-      console.log("collision");
+      sheep.collected = true;
+      score++;
+      console.log("sheep collected" + score);
     }
   }
 
@@ -677,15 +1099,221 @@ function gameScreen3() {
       y = brick.y - 50;
     }
   }
-  sheep6.draw();
-  sheep7.draw();
+  //sheep6.draw();
+  //sheep7.draw();
   wolf2.draw();
   wolf3.draw();
+
+  sheepslvl3.forEach((sheep, index) => {
+    if (!sheep.collected) {
+      fill(190);
+      rect(
+        sheep.x + 220 * c * 0.3,
+        sheep.y + 180 * c * 0.3,
+        40 * c * 0.3,
+        40 * c * 0.3
+      );
+
+      //body
+      fill(220, 220, 220);
+      rect(sheep.x, sheep.y + 40 * c * 0.3, 160 * c * 0.3, 80 * c * 0.3);
+      rect(
+        sheep.x + 20 * c * 0.3,
+        sheep.y + 120 * c * 0.3,
+        120 * c * 0.3,
+        20 * c * 0.3
+      );
+
+      //feet
+      rect(
+        sheep.x + 80 * c * 0.3,
+        sheep.y + 180 * c * 0.3,
+        40 * c * 0.3,
+        40 * c * 0.3
+      );
+      rect(
+        sheep.x + 140 * c * 0.3,
+        sheep.y + 180 * c * 0.3,
+        40 * c * 0.3,
+        40 * c * 0.3
+      );
+      rect(
+        sheep.x + 240 * c * 0.3,
+        sheep.y + 180 * c * 0.3,
+        40 * c * 0.3,
+        40 * c * 0.3
+      );
+
+      //wool
+      fill(169, 169, 169);
+      rect(sheep.x, sheep.y, 180 * c * 0.3, 40 * c * 0.3);
+      rect(
+        sheep.x + 140 * c * 0.3,
+        sheep.y - 20 * c * 0.3,
+        120 * c * 0.3,
+        20 * c * 0.3
+      );
+      rect(sheep.x + 180 * c * 0.3, sheep.y, 120 * c * 0.3, 40 * c * 0.3);
+      rect(
+        sheep.x + 160 * c * 0.3,
+        sheep.y + 40 * c * 0.3,
+        220 * c * 0.3,
+        40 * c * 0.3
+      );
+      rect(
+        sheep.x + 160 * c * 0.3,
+        sheep.y + 80 * c * 0.3,
+        180 * c * 0.3,
+        40 * c * 0.3
+      );
+      rect(
+        sheep.x + 140 * c * 0.3,
+        sheep.y + 120 * c * 0.3,
+        160 * c * 0.3,
+        20 * c * 0.3
+      );
+      rect(
+        sheep.x + 80 * c * 0.3,
+        sheep.y + 140 * c * 0.3,
+        200 * c * 0.3,
+        20 * c * 0.3
+      );
+
+      //wool outline
+      fill(105, 105, 105);
+      rect(sheep.x, sheep.y, 60 * c * 0.3, 20 * c * 0.3);
+      rect(
+        sheep.x + 40 * c * 0.3,
+        sheep.y + 20 * c * 0.3,
+        20 * c * 0.3,
+        20 * c * 0.3
+      );
+      rect(
+        sheep.x - 20 * c * 0.3,
+        sheep.y + 20 * c * 0.3,
+        20 * c * 0.3,
+        20 * c * 0.3
+      );
+      rect(sheep.x, sheep.y + 40 * c * 0.3, 20 * 0.3, 20 * c * 0.3);
+      rect(
+        sheep.x + 60 * c * 0.3,
+        sheep.y - 20 * c * 0.3,
+        80 * c * 0.3,
+        20 * c * 0.3
+      );
+      rect(sheep.x + 120 * c * 0.3, sheep.y, 20 * 0.3, 40 * c * 0.3);
+      rect(sheep.x + 140 * c * 0.3, sheep.y, 40 * c * 0.3, 20 * c * 0.3);
+      rect(
+        sheep.x + 180 * c * 0.3,
+        sheep.y + 20 * c * 0.3,
+        20 * c * 0.3,
+        20 * c * 0.3
+      );
+      rect(
+        sheep.x + 140 * c * 0.3,
+        sheep.y + 40 * c * 0.3,
+        40 * c * 0.3,
+        20 * c * 0.3
+      );
+      rect(
+        sheep.x + 140 * c * 0.3,
+        sheep.y - 40 * c * 0.3,
+        140 * c * 0.3,
+        20 * c * 0.3
+      );
+      rect(
+        sheep.x + 260 * c * 0.3,
+        sheep.y - 20 * c * 0.3,
+        60 * c * 0.3,
+        20 * c * 0.3
+      );
+      rect(sheep.x + 300 * c * 0.3, sheep.y, 20 * c * 0.3, 40 * c * 0.3);
+      rect(
+        sheep.x + 320 * c * 0.3,
+        sheep.y + 20 * c * 0.3,
+        40 * c * 0.3,
+        20 * c * 0.3
+      );
+      rect(
+        sheep.x + 360 * c * 0.3,
+        sheep.y + 40 * c * 0.3,
+        20 * c * 0.3,
+        40 * c * 0.3
+      );
+      rect(
+        sheep.x + 340 * c * 0.3,
+        sheep.y + 80 * c * 0.3,
+        40 * c * 0.3,
+        20 * c * 0.3
+      );
+      rect(
+        sheep.x + 320 * c * 0.3,
+        sheep.y + 20 * c * 0.3,
+        20 * c * 0.3,
+        100 * c * 0.3
+      );
+      rect(
+        sheep.x + 300 * c * 0.3,
+        sheep.y + 120 * c * 0.3,
+        40 * c * 0.3,
+        20 * c * 0.3
+      );
+      rect(
+        sheep.x + 280 * c * 0.3,
+        sheep.y + 140 * c * 0.3,
+        40 * c * 0.3,
+        20 * c * 0.3
+      );
+      rect(
+        sheep.x + 60 * c * 0.3,
+        sheep.y + 160 * c * 0.3,
+        240 * c * 0.3,
+        20 * c * 0.3
+      );
+      rect(
+        sheep.x + 60 * c * 0.3,
+        sheep.y + 140 * c * 0.3,
+        20 * c * 0.3,
+        20 * c * 0.3
+      );
+
+      //eyes
+      fill(0);
+      rect(
+        sheep.x + 20 * c * 0.3,
+        sheep.y + 60 * c * 0.3,
+        20 * c * 0.3,
+        20 * c * 0.3
+      );
+      rect(
+        sheep.x + 100 * c * 0.3,
+        sheep.y + 60 * c * 0.3,
+        20 * c * 0.3,
+        20 * c * 0.3
+      );
+      //nose
+      fill(255, 210, 230);
+      rect(
+        sheep.x + 40 * c * 0.3,
+        sheep.y + 80 * c * 0.3,
+        60 * c * 0.3,
+        20 * c * 0.3
+      );
+      rect(
+        sheep.x + 60 * c * 0.3,
+        sheep.y + 100 * c * 0.3,
+        20 * c * 0.3,
+        20 * c * 0.3
+      );
+    }
+  });
 
   for (let sheep of sheepslvl3) {
     //this is not detected by the dog
     if (dist(dogX, y, sheep.x, sheep.y) < 50 + 50) {
-      console.log("collision");
+      sheep.collected = true;
+      score++;
+      console.log("sheep collected" + score);
     }
   }
 
@@ -773,7 +1401,7 @@ function draw() {
   }
 }
 
-let state = "start";
+let state = "game3";
 
 function mouseClicked() {
   if (state === "instruction") {
@@ -808,7 +1436,7 @@ function mouseClicked() {
     mouseY >= 320 &&
     mouseY <= 370
   ) {
-    state = "instruction";
+    state = "instructions";
   }
 
   //levels screen

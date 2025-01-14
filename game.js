@@ -1356,26 +1356,6 @@ function keyPressed() {
   }
 }
 
-function resultScreen() {
-  gameBackground();
-  rect(300, 365, 250, 50, 10);
-  for (let wolf of wolfArray1) {
-    if (dist(dogX, y, wolf.x, wolf.y) < 100) {
-      background(0);
-      rect(300, 350, 250, 50, 10);
-      fill(0);
-      textSize(30);
-      text("Next level", 360, 400);
-      fill(255);
-      textSize(50);
-      text("You completed the level", 200, 200);
-    } else {
-      fill(255);
-      textSize(39);
-      text("you lost", 100, 100);
-    }
-  }
-}
 
 function draw() {
   if (state === "start") {
@@ -1384,9 +1364,6 @@ function draw() {
     instructionScreen();
   } else if (state === "game") {
     gameScreen();
-  } else if (state === "result") {
-    resultScreen();
-    resetlvl();
   } else if (state === "levels") {
     levelScreen();
   } else if (state === "game2") {
@@ -1409,18 +1386,9 @@ let state = "start";
 function mouseClicked() {
   if (state === "instruction") {
     state = "start";
-  } else if (
-    //levels
-    state === "result" &&
-    mouseX >= 300 &&
-    mouseX <= 550 &&
-    mouseY >= 365 &&
-    mouseY <= 320
-  ) {
-    state = "levels";
-  }
+  } 
   //startscreen
-  else if (
+   else if (
     //start button
     state === "start" &&
     mouseX >= 250 &&

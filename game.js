@@ -538,8 +538,9 @@ function gameScreen() {
       velocityY = 0; // Stop vertical velocity
       y = groundY; // Reset to ground level
     }
-  } else {
+  }
     //call result screen when done
+    else {
     state = "win";
   }
 
@@ -1078,8 +1079,10 @@ function gameScreen3() {
       velocityY = 0; // Stop vertical velocity
       y = groundY; // Reset to ground level
     }
-  } else {
+  } /*else if (sheep6.collected === false){
     //call result screen when done
+    state = "lose";
+  } */else {
     state = "win";
   }
 

@@ -543,6 +543,12 @@ function gameScreen() {
     else {
     state = "win";
   }
+//does not recognize sheep collected
+ /*  if (dogX == 830 && sheepslvl1.collected === false) {
+      
+      state = "lose";
+  
+  } */
 
   if (dogY < 500) {
     velocityY = 0;
@@ -771,7 +777,7 @@ function gameScreen() {
   });
 
   for (let sheep of sheepslvl1) {
-    //this is not detected by the dog
+  
     if (dist(dogX, y, sheep.x, sheep.y) < 50 + 50) {
       sheep.collected = true;
       score++;
@@ -1085,7 +1091,9 @@ function gameScreen3() {
   } */else {
     state = "win";
   }
-
+  
+ 
+  
   if (dogY < 500) {
     velocityY = 0;
   }

@@ -23,10 +23,11 @@ function setup() {
 function dog(x, y) {
   fill(255, 0, 0);
   ellipse(x, y, 100);
-  /*
-  push();
+   
+  
+  /*push();
   translate(x, y);
-  scale(-1, 1);
+  scale(s, 1);
   noStroke();
 
   //body
@@ -75,7 +76,7 @@ function dog(x, y) {
   fill(250, 50, 50);
   rect(x  + 80 * s, y * s + 80 * s, 140 * s, 40 * s);
 
-  pop();*/
+  pop(); */
 }
 
 class Sheep {
@@ -396,12 +397,15 @@ function resetlvl(level) {
   gamesState = true;
   for (let sheep of sheepslvl1) {
     sheep.collected = false;
+    score = 0;
   }
   for (let sheep of sheepslvl2) {
     sheep.collected = false;
+    score = 0;
   }
   for (let sheep of sheepslvl3) {
     sheep.collected = false;
+    score = 0;
   }
 }
 
@@ -540,15 +544,23 @@ function gameScreen() {
     }
   }
     //call result screen when done
-    else {
-    state = "win";
+   
+else if(score === 2){
+  state = "win";
+}
+else {
+  console.log(score);
+   state= "lose";
   }
-//does not recognize sheep collected
- /*  if (dogX == 830 && sheepslvl1.collected === false) {
+/*does not recognize sheep collected
+  if (dogX == 830 && !sheepslvl1.collected) {
       
       state = "lose";
-  
-  } */
+     
+  }*/
+
+  console.log(sheepslvl1.collected);
+  console.log(score);
 
   if (dogY < 500) {
     velocityY = 0;
@@ -779,9 +791,11 @@ function gameScreen() {
   for (let sheep of sheepslvl1) {
   
     if (dist(dogX, y, sheep.x, sheep.y) < 50 + 50) {
+      if(!sheep.collected) {
       sheep.collected = true;
       score++;
       console.log("sheep collected" + score);
+      }
     }
   }
 }
@@ -811,10 +825,25 @@ function gameScreen2() {
       velocityY = 0; // Stop vertical velocity
       y = groundY; // Reset to ground level
     }
-  } else {
-    //call result screen when done
-    state = "win";
   }
+    //call result screen when done
+   
+else if(score === 2){
+  state = "win";
+}
+else {
+  console.log(score);
+   state= "lose";
+  }
+/*does not recognize sheep collected
+  if (dogX == 830 && !sheepslvl1.collected) {
+      
+      state = "lose";
+     
+  }*/
+
+  console.log(sheepslvl1.collected);
+  console.log(score);
 
   if (dogY < 500) {
     velocityY = 0;
@@ -1045,9 +1074,11 @@ function gameScreen2() {
   for (let sheep of sheepslvl2) {
     //this is not detected by the dog
     if (dist(dogX, y, sheep.x, sheep.y) < 50 + 50) {
-      sheep.collected = true;
-      score++;
-      console.log("sheep collected" + score);
+      if(!sheep.collected) {
+        sheep.collected = true;
+        score++;
+        console.log("sheep collected" + score);
+        }
     }
   }
 
@@ -1085,12 +1116,25 @@ function gameScreen3() {
       velocityY = 0; // Stop vertical velocity
       y = groundY; // Reset to ground level
     }
-  } /*else if (sheep6.collected === false){
-    //call result screen when done
-    state = "lose";
-  } */else {
-    state = "win";
   }
+    //call result screen when done
+   
+else if(score === 2){
+  state = "win";
+}
+else {
+  console.log(score);
+   state= "lose";
+  }
+/*does not recognize sheep collected
+  if (dogX == 830 && !sheepslvl1.collected) {
+      
+      state = "lose";
+     
+  }*/
+
+  console.log(sheepslvl1.collected);
+  console.log(score);
   
  
   
@@ -1325,9 +1369,11 @@ function gameScreen3() {
   for (let sheep of sheepslvl3) {
     //this is not detected by the dog
     if (dist(dogX, y, sheep.x, sheep.y) < 50 + 50) {
-      sheep.collected = true;
-      score++;
-      console.log("sheep collected" + score);
+      if(!sheep.collected) {
+        sheep.collected = true;
+        score++;
+        console.log("sheep collected" + score);
+        }
     }
   }
 

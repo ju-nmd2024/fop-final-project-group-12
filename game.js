@@ -436,16 +436,16 @@ function instructionScreen() {
   textSize(60);
   text("Instructions", 250, 120);
   textSize(20);
-  text("Collect all sheeps and return to the barn", 120, 200);
+  text("Collect all sheeps and return to the barn!", 120, 200);
 
   text(
-    "Use the arrow keys to move the character, use the spacebar to jump",
+    "Use the arrow keys to move the character, use the spacebar to jump.",
     120,
     250,
     300
   );
   text(
-    "Watch out for the wolves! They will take all your sheeps!",
+    "Watch out for the wolves! They will kill you!",
     120,
     370,
     300
@@ -524,7 +524,7 @@ function gameScreen() {
   //code for gravity from Chat GPT
   if (dogX < 1000) {
     // as long as character is not there yet
-
+    
     if (keyIsDown(39)) {
       dogX = dogX + speed;
     }
@@ -542,25 +542,13 @@ function gameScreen() {
       velocityY = 0; // Stop vertical velocity
       y = groundY; // Reset to ground level
     }
-  }
-    //call result screen when done
-   
-else if(score === 2){
+  } //call win or lose screen when done:
+   else if(score === 2){
   state = "win";
 }
 else {
-  console.log(score);
    state= "lose";
   }
-/*does not recognize sheep collected
-  if (dogX == 830 && !sheepslvl1.collected) {
-      
-      state = "lose";
-     
-  }*/
-
-  console.log(sheepslvl1.collected);
-  console.log(score);
 
   if (dogY < 500) {
     velocityY = 0;
@@ -580,8 +568,6 @@ else {
       y = brick.y - 50;
     }
   }
-  //sheep1.draw();
-  //sheep2.draw();
 
   //chat gpt, make sheep dissapear when collected
   sheepslvl1.forEach((sheep, index) => {
@@ -795,6 +781,7 @@ else {
       sheep.collected = true;
       score++;
       console.log("sheep collected" + score);
+      console.log(score);
       }
     }
   }
@@ -825,25 +812,13 @@ function gameScreen2() {
       velocityY = 0; // Stop vertical velocity
       y = groundY; // Reset to ground level
     }
-  }
-    //call result screen when done
-   
-else if(score === 2){
+  } //call result screen when done
+   else if(score === 2){
   state = "win";
 }
 else {
-  console.log(score);
    state= "lose";
   }
-/*does not recognize sheep collected
-  if (dogX == 830 && !sheepslvl1.collected) {
-      
-      state = "lose";
-     
-  }*/
-
-  console.log(sheepslvl1.collected);
-  console.log(score);
 
   if (dogY < 500) {
     velocityY = 0;
@@ -862,8 +837,7 @@ else {
       y = brick.y - 50;
     }
   }
-  // sheep3.draw();
-  //sheep5.draw();
+ 
   wolf1.draw();
 
   //chat gpt, make sheep dissapear when collected
@@ -1078,6 +1052,7 @@ else {
         sheep.collected = true;
         score++;
         console.log("sheep collected" + score);
+        console.log(score);
         }
     }
   }
@@ -1116,28 +1091,14 @@ function gameScreen3() {
       velocityY = 0; // Stop vertical velocity
       y = groundY; // Reset to ground level
     }
-  }
-    //call result screen when done
-   
-else if(score === 2){
+  }//call result screen when done
+   else if(score === 2){
   state = "win";
 }
 else {
-  console.log(score);
    state= "lose";
   }
-/*does not recognize sheep collected
-  if (dogX == 830 && !sheepslvl1.collected) {
-      
-      state = "lose";
-     
-  }*/
-
-  console.log(sheepslvl1.collected);
-  console.log(score);
-  
  
-  
   if (dogY < 500) {
     velocityY = 0;
   }
@@ -1156,8 +1117,7 @@ else {
       y = brick.y - 50;
     }
   }
-  //sheep6.draw();
-  //sheep7.draw();
+ 
   wolf2.draw();
   wolf3.draw();
 
@@ -1373,6 +1333,7 @@ else {
         sheep.collected = true;
         score++;
         console.log("sheep collected" + score);
+        console.log(score);
         }
     }
   }
@@ -1412,7 +1373,6 @@ function keyPressed() {
     onSurface = false; // Disable further jumping until landing
   }
 }
-
 
 function draw() {
   if (state === "start") {
@@ -1455,7 +1415,7 @@ function mouseClicked() {
   ) {
     state = "levels";
   }
-  // instructions button
+  // instruction button
   else if (
     state === "start" &&
     mouseX >= 250 &&
@@ -1463,7 +1423,7 @@ function mouseClicked() {
     mouseY >= 320 &&
     mouseY <= 370
   ) {
-    state = "instructions";
+    state = "instruction";
   }
 
   //levels screen

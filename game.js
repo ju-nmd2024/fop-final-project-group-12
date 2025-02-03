@@ -40,58 +40,6 @@ function dog(x, y) {
   rect(x+65,y-38,10,10);
   pop();
   
-  /*push();
-  translate(x, y);
-  scale(s, 1);
-  noStroke();
-
-  //body
-  fill(222, 184, 135);
-  rect(x * s + 20 * s, y * s, 160 * s, 60 * s);
-  rect(x * s + 80 * s, y * s - 20 * s, 100 * s, 20 * s);
-  rect(x * s + 120 * s, y * s - 40 * s, 60 * s, 20 * s);
-
-  rect(x * s + 80 * s, y * s + 60 * s, 100 * s, 20 * s);
-  rect(x * s + 80 * s, y * s + 100 * s, 40 * s, 180 * s);
-  rect(x * s + 80 * s, y * s + 100 * s, 320 * s, 100 * s);
-  rect(x * s + 160 * s, y * s + 100 * s, 40 * s, 180 * s);
-  rect(x * s + 360 * s, y * s + 100 * s, 40 * s, 180 * s);
-  rect(x * s + 280 * s, y * s + 100 * s, 40 * s, 180 * s);
-
-  // fläck
-  fill(139, 69, 19);
-  rect(x * s + 180 * s, y * s - 20 * s, 20 * s, 100 * s);
-  rect(x * s + 200 * s, y * s + 60 * s, 20 * s, 20 * s);
-  rect(x * s + 200 * s, y * s + 60 * s, 20 * s, 20 * s);
-  rect(x * s + 380 * s, y * s + 40 * s, 40 * s, 60 * s);
-  rect(x * s + 360 * s, y * s + 20 * s, 40 * s, 20 * s);
-  rect(x * s + 340 * s, y * s + 40 * s, 20 * s, 20 * s);
-  rect(x * s + 220 * s, y * s + 100 * s, 180 * s, 20 * s); 
-  rect(x * s + 260 * s, y * s + 120 * s, 140 * s, 20 * s);
-  rect(x * s + 300 * s, y * s + 140 * s, 80 * s, 20 * s);
-  //öron
-  rect(x * s + 100 * s, y * s - 80 * s, 20 * s, 20 * s);
-  rect(x * s + 160 * s, y * s - 60 * s, 40 * s, 40 * s);
-  rect(x * s + 180 * s, y * s - 80 * s, 20 * s, 20 * s);
-  rect(x * s + 100 * s, y * s - 60 * s, 40 * s, 40 * s);
-
-  //darkest spots
-  fill(80, 0, 0);
-  rect(x * s, y * s, 40 * s, 40 * s);
-  rect(x * s + 100 * s, y * s - 60 * s, 20 * s, 40 * s);
-  rect(x * s + 180 * s, y * s - 60 * s, 20 * s, 40 * s);
-  rect(x  + 100 * s, y * s, 20 * s, 20 * s);
-  rect(x  + 140 * s, y * s, 20 * s, 20 * s);
-  rect(x  + 60 * s, y * s + 260 * s, 20 * s, 20 * s);
-  rect(x  + 140 * s, y * s + 260 * s, 20 * s, 20 * s);
-  rect(x  + 340 * s, y * s + 260 * s, 20 * s, 20 * s);
-  rect(x  + 260 * s, y * s + 260 * s, 20 * s, 20 * s);
-
-  //halsband
-  fill(250, 50, 50);
-  rect(x  + 80 * s, y * s + 80 * s, 140 * s, 40 * s);
-
-  pop(); */
 }
 
 class Sheep {

@@ -21,9 +21,24 @@ function setup() {
 }
 
 function dog(x, y) {
-  fill(255, 0, 0);
-  ellipse(x, y, 100);
-   
+
+  push();
+  stroke(90,50,0);
+  strokeWeight(5);
+  fill(200,100,30);
+  rect(x-50,y-40,100,70,10);
+  rect(x+20,y-50,50,30);
+  rect(x+20,y-70,20,20);
+  rect(x-30,y+30,20,20);
+  rect(x+10,y+30,20,20);
+  noStroke();
+  fill(0,0,0);
+  rect(x+45,y-45,10);
+  fill(255,255,255);
+  rect(x+46,y-44,4);
+  fill(255, 210, 230);
+  rect(x+65,y-38,10,10);
+  pop();
   
   /*push();
   translate(x, y);
